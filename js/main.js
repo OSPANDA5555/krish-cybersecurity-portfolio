@@ -5,41 +5,35 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize 3D Hero Scene
-  if (typeof initHero3D === 'function') {
-    initHero3D();
-  }
+  // 1. Render Education first safely
+  try { renderEducation(); } catch (e) { console.error('Error rendering education:', e); }
 
-  // 2. Initialize Dynamic UI Renderers
-  renderHeroTerminal('status');
-  renderFocusPillars();
-  if (typeof initSkillsInteractive === 'function') {
-    initSkillsInteractive();
-  }
-  if (typeof initSocDashboard === 'function') {
-    initSocDashboard();
-  }
-  if (typeof initProjectsExpanded === 'function') {
-    initProjectsExpanded();
-  }
-  if (typeof initJourneyInteractive === 'function') {
-    initJourneyInteractive();
-  }
-  if (typeof initRecruiterUX === 'function') {
-    initRecruiterUX();
-  }
-  renderCurrentlyLearning();
-  renderEducation();
-  setCurrentYear();
+  // 2. Initialize 3D Hero Scene
+  try {
+    if (typeof initHero3D === 'function') {
+      initHero3D();
+    }
+  } catch (e) { console.warn('Hero 3D init note:', e); }
 
-  // 3. Setup Event Listeners
-  setupTerminalTabs();
-  setupNavigation();
-  setupEmailCopy();
+  // 3. Initialize Dynamic UI Renderers with try/catch isolation
+  try { renderHeroTerminal('status'); } catch (e) {}
+  try { renderFocusPillars(); } catch (e) {}
+  try { if (typeof initSkillsInteractive === 'function') initSkillsInteractive(); } catch (e) {}
+  try { if (typeof initSocDashboard === 'function') initSocDashboard(); } catch (e) {}
+  try { if (typeof initProjectsExpanded === 'function') initProjectsExpanded(); } catch (e) {}
+  try { if (typeof initJourneyInteractive === 'function') initJourneyInteractive(); } catch (e) {}
+  try { if (typeof initRecruiterUX === 'function') initRecruiterUX(); } catch (e) {}
+  try { renderCurrentlyLearning(); } catch (e) {}
+  try { setCurrentYear(); } catch (e) {}
 
-  // 3. Re-initialize Lucide Icons after DOM populating
+  // 4. Setup Event Listeners
+  try { setupTerminalTabs(); } catch (e) {}
+  try { setupNavigation(); } catch (e) {}
+  try { setupEmailCopy(); } catch (e) {}
+
+  // 5. Re-initialize Lucide Icons after DOM populating
   if (window.lucide) {
-    window.lucide.createIcons();
+    try { window.lucide.createIcons(); } catch (e) {}
   }
 });
 

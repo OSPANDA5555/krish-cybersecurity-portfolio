@@ -918,10 +918,6 @@ code, kbd, samp, pre {
 }
 
 .education-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
   max-width: 900px;
   margin: 0 auto;
 }
