@@ -35,7 +35,7 @@ function initHero3D() {
 
   // 1. Scene Setup
   heroScene = new THREE.Scene();
-  heroScene.fog = new THREE.FogExp2(0x07090E, 0.035);
+  heroScene.fog = new THREE.FogExp2(0x000000, 0.035);
 
   // 2. Camera Setup
   heroCamera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 100);
@@ -141,7 +141,7 @@ function buildSecurityNetworkTopology(isMobile) {
       wireframe: true,
       transparent: true,
       opacity: 0.85,
-      emissive: 0x07090E
+      emissive: 0x000000
     });
     const satMesh = new THREE.Mesh(satGeo, satMat);
     satMesh.position.set(x, y, z);
@@ -344,7 +344,7 @@ function highlightNode(node) {
 
 function resetNodeStyle(node) {
   if (node.material && node.material.emissive) {
-    node.material.emissive.setHex(0x07090E);
+    node.material.emissive.setHex(0x000000);
   }
   document.body.style.cursor = 'default';
   hideNodeTooltip();
