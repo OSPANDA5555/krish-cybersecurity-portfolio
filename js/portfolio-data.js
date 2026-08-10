@@ -500,22 +500,18 @@ const PORTFOLIO_DATA = {
 
   education: {
     studentName: "Krish Kumar Dey",
-    institution: "Ajeenkya DY Patil University (ADYPU)",
+    institution: "Ajeenkya DY Patil University",
+    shortInstitution: "ADYPU",
     location: "Lohegaon, Pune, Maharashtra, India",
     degree: "Bachelor of Technology (B.Tech)",
     branch: "Computer Science & IT",
     focus: "Cybersecurity Focus",
-    timeline: "2025 – 2029 (Expected Graduation)",
+    specialization: "Cybersecurity",
+    timeline: "2025 — 2029",
+    expectedGraduation: "2029",
     targetRole: "SOC Analyst",
-    status: "CURRENTLY ENROLLED",
-    statusBadgeClass: "badge-in-progress",
-    focusTags: [
-      "Cybersecurity",
-      "Linux",
-      "Networking",
-      "SIEM",
-      "Security Monitoring"
-    ]
+    status: "IN PROGRESS",
+    statusBadgeClass: "badge-in-progress"
   },
 
   simulatedEvents: [

@@ -271,53 +271,43 @@ function renderEducation() {
   container.innerHTML = `
     <div class="education-tech-card">
       
-      <!-- Top Header: University Badge & Timeline -->
+      <!-- Card Header: University Name & Status Badge -->
       <div class="edu-card-header">
         <div class="edu-uni-badge">
           <div class="edu-uni-icon">
-            <i data-lucide="graduation-cap" style="width: 24px; height: 24px;" aria-hidden="true"></i>
+            <i data-lucide="graduation-cap" style="width: 26px; height: 26px;" aria-hidden="true"></i>
           </div>
           <div>
-            <h3 class="edu-uni-title">${edu.institution}</h3>
-            <div class="edu-uni-sub">📍 ${edu.location}</div>
+            <h3 class="edu-uni-title" style="font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--text-primary); margin-bottom: 2px;">${edu.institution}</h3>
+            <div class="edu-uni-sub" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-emerald);">📍 ${edu.location}</div>
           </div>
         </div>
 
-        <div class="edu-timeline-badge">
+        <div class="edu-timeline-badge" style="display: flex; align-items: center; gap: 8px;">
           <span>📅 ${edu.timeline}</span>
-        </div>
-      </div>
-
-      <!-- Degree & Branch Box -->
-      <div class="edu-degree-box">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-          <h4 class="edu-degree-title">${edu.degree}</h4>
           <span class="status-badge ${edu.statusBadgeClass}">● ${edu.status}</span>
         </div>
-        <div class="edu-branch-title">BRANCH: ${edu.branch} | ${edu.focus}</div>
-        
-        <!-- Meta Details Grid -->
-        <div class="edu-meta-grid">
-          <div class="edu-meta-item">
-            <span class="meta-item-label">STUDENT</span>
-            <span class="meta-item-value">${edu.studentName}</span>
-          </div>
-          <div class="edu-meta-item">
-            <span class="meta-item-label">CAREER TARGET</span>
-            <span class="meta-item-value" style="color: var(--color-cyan);">${edu.targetRole}</span>
-          </div>
-          <div class="edu-meta-item">
-            <span class="meta-item-label">TIMELINE</span>
-            <span class="meta-item-value">2025 – 2029</span>
-          </div>
-        </div>
       </div>
 
-      <!-- Relevant Academic Focus Tags -->
-      <div>
-        <div style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 8px;">RELEVANT ACADEMIC FOCUS:</div>
-        <div class="edu-focus-tags">
-          ${edu.focusTags.map(t => `<span class="tag-pill" style="font-size: 0.8rem; padding: 4px 12px;">${t}</span>`).join('')}
+      <!-- Degree, Branch & Focus Box -->
+      <div class="edu-degree-box" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-6);">
+        <h4 class="edu-degree-title" style="font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--text-primary); margin-bottom: 4px;">${edu.degree}</h4>
+        <div class="edu-branch-title" style="font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--color-cyan); margin-bottom: 16px;">${edu.branch} — ${edu.focus}</div>
+        
+        <!-- Key Metadata Grid -->
+        <div class="edu-meta-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle);">
+          <div class="edu-meta-item">
+            <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">STUDENT</span>
+            <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-primary);">${edu.studentName}</span>
+          </div>
+          <div class="edu-meta-item">
+            <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">CAREER DIRECTION</span>
+            <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--color-cyan);">${edu.targetRole}</span>
+          </div>
+          <div class="edu-meta-item">
+            <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">EXPECTED GRADUATION</span>
+            <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-primary);">${edu.expectedGraduation}</span>
+          </div>
         </div>
       </div>
 
