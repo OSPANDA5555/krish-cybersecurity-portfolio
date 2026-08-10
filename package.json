@@ -1,0 +1,13 @@
+{
+  "name": "krish-cybersecurity-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Krish Kumar Dey - Aspiring SOC Analyst Cybersecurity Portfolio",
+  "scripts": {
+    "build": "echo 'Static build ready'",
+    "start": "npx serve ."
+  },
+  "keywords": ["cybersecurity", "portfolio", "soc-analyst", "adypu"],
+  "author": "Krish Kumar Dey",
+  "license": "MIT"
+}

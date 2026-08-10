@@ -56,11 +56,12 @@
         <span>KRISH DEY <span style="color: var(--color-cyan);">// SOC-OPS</span></span>
       </a>
 
-      <!-- Streamlined 7-Item Navigation Bar -->
+      <!-- Streamlined 8-Item Navigation Bar with Education Link -->
       <nav aria-label="Main Navigation" role="navigation">
         <div class="nav-links" id="navLinks">
           <a href="#hero" class="nav-link active" aria-current="page">Home</a>
           <a href="#about" class="nav-link">About</a>
+          <a href="#education" class="nav-link">Education</a>
           <a href="#skills" class="nav-link">Skills</a>
           <a href="#tools" class="nav-link">Cybersecurity Lab</a>
           <a href="#projects" class="nav-link">Projects</a>
@@ -133,14 +134,14 @@
             </div>
 
             <div class="hero-meta-badges">
-              <div class="meta-badge-item">
+              <a href="#education" class="meta-badge-item" style="text-decoration: none; cursor: pointer;">
                 <span class="meta-badge-label">UNIVERSITY</span>
-                <span class="meta-badge-value">ADYPU, Pune</span>
-              </div>
-              <div class="meta-badge-item">
+                <span class="meta-badge-value" style="color: var(--color-cyan);">ADYPU, Pune ↓</span>
+              </a>
+              <a href="#education" class="meta-badge-item" style="text-decoration: none; cursor: pointer;">
                 <span class="meta-badge-label">DEGREE</span>
                 <span class="meta-badge-value">B.Tech CS & IT ('29)</span>
-              </div>
+              </a>
               <div class="meta-badge-item">
                 <span class="meta-badge-label">3D TELEMETRY</span>
                 <span class="meta-badge-value" style="color: var(--color-emerald);">Click Nodes to Inspect</span>
@@ -213,13 +214,80 @@
       </div>
     </section>
 
-    <!-- 3. CYBERSECURITY FOCUS SECTION -->
+    <!-- 3. ACADEMIC BACKGROUND & EDUCATION SECTION -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="graduation-cap" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>02. ACADEMIC CREDENTIALS</span>
+          </div>
+          <h2 class="section-title">Academic Background</h2>
+          <p class="section-subtitle">Formal university degree, campus location, and cybersecurity specialization focus.</p>
+        </div>
+
+        <div class="education-card" id="educationContainer">
+          <div class="education-tech-card" style="border: 1px solid var(--border-cyan-glow); box-shadow: var(--shadow-lg);">
+            
+            <!-- Top Gradient Accent Bar -->
+            <div style="height: 3px; background: linear-gradient(90deg, var(--color-cyan), var(--color-emerald), var(--color-indigo)); margin: -2rem -2rem 2rem -2rem;"></div>
+
+            <!-- Card Header: University Name & Status Badge -->
+            <div class="edu-card-header">
+              <div class="edu-uni-badge">
+                <div class="edu-uni-icon" style="width: 54px; height: 54px; background: rgba(0, 229, 255, 0.12); border: 1px solid var(--border-cyan-glow);">
+                  <i data-lucide="graduation-cap" style="width: 28px; height: 28px; color: var(--color-cyan);" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <h3 class="edu-uni-title" style="font-size: 1.6rem; font-weight: var(--fw-bold); color: var(--text-primary); margin-bottom: 2px;">Ajeenkya DY Patil University (ADYPU)</h3>
+                  <div class="edu-uni-sub" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-emerald); font-weight: var(--fw-semibold);">📍 Lohegaon, Pune, Maharashtra, India</div>
+                </div>
+              </div>
+
+              <div class="edu-timeline-badge" style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-weight: var(--fw-bold); color: var(--color-cyan);">📅 2025 — 2029</span>
+                <span class="status-badge badge-in-progress">● IN PROGRESS</span>
+              </div>
+            </div>
+
+            <!-- Degree, Branch & Focus Box -->
+            <div class="edu-degree-box" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-6);">
+              <h4 class="edu-degree-title" style="font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--text-primary); margin-bottom: 6px;">Bachelor of Technology (B.Tech)</h4>
+              <div class="edu-branch-title" style="font-family: var(--font-mono); font-size: var(--fs-base); color: var(--color-cyan); font-weight: var(--fw-semibold); margin-bottom: 16px;">Computer Science & IT — Cybersecurity Focus</div>
+              
+              <!-- Key Metadata Grid -->
+              <div class="edu-meta-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle);">
+                <div class="edu-meta-item">
+                  <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">STUDENT NAME</span>
+                  <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-primary);">Krish Kumar Dey</span>
+                </div>
+                <div class="edu-meta-item">
+                  <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">SPECIALIZATION</span>
+                  <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--color-emerald);">Cybersecurity</span>
+                </div>
+                <div class="edu-meta-item">
+                  <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">CAREER DIRECTION</span>
+                  <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--color-cyan);">SOC Analyst</span>
+                </div>
+                <div class="edu-meta-item">
+                  <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">EXPECTED GRADUATION</span>
+                  <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-primary);">2029</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CYBERSECURITY FOCUS SECTION -->
     <section class="section" id="focus">
       <div class="container">
         <div class="section-header">
           <div class="section-tag">
             <i data-lucide="target" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>02. SPECIALIZATION</span>
+            <span>03. SPECIALIZATION</span>
           </div>
           <h2 class="section-title">Cybersecurity Focus</h2>
           <p class="section-subtitle">Core domains driving my technical preparation and defensive security training.</p>
@@ -231,13 +299,13 @@
       </div>
     </section>
 
-    <!-- 4. INTERACTIVE TECHNICAL SKILLS CONSTELLATION SECTION -->
+    <!-- 5. INTERACTIVE TECHNICAL SKILLS CONSTELLATION SECTION -->
     <section class="section" id="skills">
       <div class="container">
         <div class="section-header">
           <div class="section-tag">
             <i data-lucide="code" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>03. TECHNICAL CAPABILITIES</span>
+            <span>04. TECHNICAL CAPABILITIES</span>
           </div>
           <h2 class="section-title">Technical Skills Constellation</h2>
           <p class="section-subtitle">
@@ -287,13 +355,13 @@
       </div>
     </section>
 
-    <!-- 5. CYBERSECURITY LAB & INTERACTIVE SOC DASHBOARD -->
+    <!-- 6. CYBERSECURITY LAB & INTERACTIVE SOC DASHBOARD -->
     <section class="section" id="tools">
       <div class="container">
         <div class="section-header">
           <div class="section-tag">
             <i data-lucide="wrench" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>04. SOC TELEMETRY LAB</span>
+            <span>05. SOC TELEMETRY LAB</span>
           </div>
           <h2 class="section-title">Cybersecurity Lab Dashboard</h2>
           <p class="section-subtitle">
@@ -376,13 +444,13 @@
       </div>
     </section>
 
-    <!-- 6. PROJECTS & SECURITY LAB ROADMAP -->
+    <!-- 7. PROJECTS & SECURITY LAB ROADMAP -->
     <section class="section" id="projects">
       <div class="container">
         <div class="section-header">
           <div class="section-tag">
             <i data-lucide="cpu" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>05. BUILDING NEXT</span>
+            <span>06. BUILDING NEXT</span>
           </div>
           <h2 class="section-title">Projects & Security Lab Roadmap</h2>
           <p class="section-subtitle">
@@ -397,13 +465,13 @@
       </div>
     </section>
 
-    <!-- 7. INTERACTIVE CYBERSECURITY JOURNEY -->
+    <!-- 8. INTERACTIVE CYBERSECURITY JOURNEY -->
     <section class="section" id="journey">
       <div class="container">
         <div class="section-header">
           <div class="section-tag">
             <i data-lucide="milestone" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>06. PROGRESSION ROADMAP</span>
+            <span>07. PROGRESSION ROADMAP</span>
           </div>
           <h2 class="section-title">Cybersecurity Journey</h2>
           <p class="section-subtitle">
@@ -417,13 +485,13 @@
       </div>
     </section>
 
-    <!-- 8. HANDS-ON PLATFORMS & PROFILES -->
+    <!-- 9. HANDS-ON PLATFORMS & PROFILES -->
     <section class="section" id="platforms">
       <div class="container">
         <div class="section-header">
           <div class="section-tag">
             <i data-lucide="globe" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>07. HANDS-ON PLATFORMS</span>
+            <span>08. HANDS-ON PLATFORMS</span>
           </div>
           <h2 class="section-title">TryHackMe & Hack The Box</h2>
           <p class="section-subtitle">
@@ -437,13 +505,13 @@
       </div>
     </section>
 
-    <!-- 9. CURRENTLY LEARNING -->
+    <!-- 10. CURRENTLY LEARNING -->
     <section class="section" id="learning">
       <div class="container">
         <div class="section-header">
           <div class="section-tag">
             <i data-lucide="book-open" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>08. CONTINUOUS LEARNING</span>
+            <span>09. CONTINUOUS LEARNING</span>
           </div>
           <h2 class="section-title">Currently Learning</h2>
           <p class="section-subtitle">Active topics and theoretical areas being studied to strengthen SOC readiness.</p>
@@ -451,66 +519,6 @@
 
         <div class="learning-grid" id="learningContainer">
           <!-- Dynamically populated via JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- 10. EDUCATION SECTION -->
-    <section class="section" id="education">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-tag">
-            <i data-lucide="graduation-cap" style="width: 12px; height: 12px;" aria-hidden="true"></i>
-            <span>09. ACADEMIC BACKGROUND</span>
-          </div>
-          <h2 class="section-title">Academic Background</h2>
-          <p class="section-subtitle">Formal university degree details and academic background.</p>
-        </div>
-
-        <div class="education-card" id="educationContainer">
-          <div class="education-tech-card">
-            
-            <!-- Card Header: University Name & Status Badge -->
-            <div class="edu-card-header">
-              <div class="edu-uni-badge">
-                <div class="edu-uni-icon">
-                  <i data-lucide="graduation-cap" style="width: 26px; height: 26px;" aria-hidden="true"></i>
-                </div>
-                <div>
-                  <h3 class="edu-uni-title" style="font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--text-primary); margin-bottom: 2px;">Ajeenkya DY Patil University</h3>
-                  <div class="edu-uni-sub" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-emerald);">📍 Lohegaon, Pune, Maharashtra, India</div>
-                </div>
-              </div>
-
-              <div class="edu-timeline-badge" style="display: flex; align-items: center; gap: 8px;">
-                <span>📅 2025 — 2029</span>
-                <span class="status-badge badge-in-progress">● IN PROGRESS</span>
-              </div>
-            </div>
-
-            <!-- Degree, Branch & Focus Box -->
-            <div class="edu-degree-box" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-6);">
-              <h4 class="edu-degree-title" style="font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--text-primary); margin-bottom: 4px;">Bachelor of Technology (B.Tech)</h4>
-              <div class="edu-branch-title" style="font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--color-cyan); margin-bottom: 16px;">Computer Science & IT — Cybersecurity Focus</div>
-              
-              <!-- Key Metadata Grid -->
-              <div class="edu-meta-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle);">
-                <div class="edu-meta-item">
-                  <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">STUDENT</span>
-                  <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-primary);">Krish Kumar Dey</span>
-                </div>
-                <div class="edu-meta-item">
-                  <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">CAREER DIRECTION</span>
-                  <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--color-cyan);">SOC Analyst</span>
-                </div>
-                <div class="edu-meta-item">
-                  <span class="meta-item-label" style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted);">EXPECTED GRADUATION</span>
-                  <span class="meta-item-value" style="font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-primary);">2029</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
       </div>
     </section>
