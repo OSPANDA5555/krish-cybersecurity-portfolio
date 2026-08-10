@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try { if (typeof initJourneyInteractive === 'function') initJourneyInteractive(); } catch (e) {}
   try { if (typeof initRecruiterUX === 'function') initRecruiterUX(); } catch (e) {}
   try { renderCurrentlyLearning(); } catch (e) {}
+  try { renderNetworkNodes(); } catch (e) {}
   try { setCurrentYear(); } catch (e) {}
 
   // 4. Setup Event Listeners
@@ -380,3 +381,97 @@ function setupEmailCopy() {
     });
   });
 }
+
+/* --------------------------------------------------------------------------
+   05 — 3D Security Network Cards Renderer
+   -------------------------------------------------------------------------- */
+function renderNetworkNodes() {
+  const container = document.getElementById('networkNodeGrid');
+  if (!container) return;
+
+  const nodes = [
+    {
+      category: "SOC",
+      title: "SOC Operations",
+      state: "Learning",
+      badgeClass: "state-indigo",
+      description: "Understanding Security Operations Center workflows, alert triage pipelines, and escalation paths.",
+      icon: "activity"
+    },
+    {
+      category: "SIEM",
+      title: "SIEM Log Correlation",
+      state: "Learning",
+      badgeClass: "state-indigo",
+      description: "Learning how Security Information and Event Management systems collect, correlate, and analyze security events.",
+      icon: "database"
+    },
+    {
+      category: "NETWORKING",
+      title: "Network Protocols & Telemetry",
+      state: "Practicing",
+      badgeClass: "state-cyan",
+      description: "Studying TCP/IP stack behavior, DNS queries, HTTP traffic flows, and packet capture analysis with Wireshark.",
+      icon: "network"
+    },
+    {
+      category: "LINUX",
+      title: "Linux System Administration",
+      state: "Practicing",
+      badgeClass: "state-cyan",
+      description: "Daily CLI navigation, system log auditing (/var/log/auth.log), file permissions (chmod/chown), and bash scripting.",
+      icon: "terminal"
+    },
+    {
+      category: "WEB SECURITY",
+      title: "Web Security Fundamentals",
+      state: "Exploring",
+      badgeClass: "state-amber",
+      description: "Exploring web application security concepts, HTTP request/response structures, and proxy interception with Burp Suite.",
+      icon: "globe"
+    },
+    {
+      category: "SECURITY TOOLS",
+      title: "Nmap, Wireshark & Burp Suite",
+      state: "Practicing",
+      badgeClass: "state-cyan",
+      description: "Hands-on usage of network scanners and packet analyzers in controlled local lab environments.",
+      icon: "wrench"
+    },
+    {
+      category: "CLOUD",
+      title: "AWS Cloud Fundamentals",
+      state: "Exploring",
+      badgeClass: "state-amber",
+      description: "Learning foundational cloud concepts, IAM permission policies, and virtual network security groups.",
+      icon: "cloud"
+    },
+    {
+      category: "INFRASTRUCTURE",
+      title: "Docker Containerization",
+      state: "Familiar",
+      badgeClass: "state-emerald",
+      description: "Building isolated container environments for running security tooling and lab services safely.",
+      icon: "box"
+    }
+  ];
+
+  container.innerHTML = nodes.map(node => `
+    <div class="network-node-card" style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-5); transition: all var(--transition-normal); cursor: pointer;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3);">
+        <div style="display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-cyan); font-weight: var(--fw-semibold);">
+          <i data-lucide="${node.icon}" style="width: 16px; height: 16px;"></i>
+          <span>${node.category}</span>
+        </div>
+        <span class="state-badge ${node.badgeClass}">${node.state}</span>
+      </div>
+      <h3 style="font-size: var(--fs-base); font-weight: var(--fw-bold); color: var(--text-primary); margin-bottom: 8px;">${node.title}</h3>
+      <p style="font-size: var(--fs-xs); color: var(--text-secondary); margin: 0; line-height: 1.5;">${node.description}</p>
+    </div>
+  `).join('');
+
+  if (window.lucide) {
+    try { window.lucide.createIcons(); } catch (e) {}
+  }
+}
+
