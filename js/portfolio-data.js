@@ -8,7 +8,8 @@ const PORTFOLIO_DATA = {
     fullName: "Krish Kumar Dey",
     preferredName: "Krish",
     degree: "B.Tech Computer Science & IT",
-    university: "Ajeenkya DY Patil University, Pune",
+    university: "Ajeenkya DY Patil University (ADYPU)",
+    location: "Lohegaon, Pune, Maharashtra, India",
     expectedGraduation: "2029",
     careerTarget: "SOC Analyst",
     primaryInterests: [
@@ -86,22 +87,22 @@ const PORTFOLIO_DATA = {
       },
       {
         name: "Java",
-        state: "Learning",
-        stateBadgeClass: "state-indigo",
+        state: "Practicing",
+        stateBadgeClass: "state-cyan",
         description: "Studying Object-Oriented Programming (OOP) principles, data structures, and software logic.",
         relevance: "Understanding enterprise application logic and backend architecture."
       },
       {
         name: "C++",
-        state: "Familiar",
-        stateBadgeClass: "state-amber",
+        state: "Practicing",
+        stateBadgeClass: "state-cyan",
         description: "Studying memory management, pointers, and low-level computer system concepts.",
         relevance: "Understanding system memory fundamentals and execution behavior."
       },
       {
         name: "Rust",
-        state: "Exploring",
-        stateBadgeClass: "state-muted",
+        state: "Learning",
+        stateBadgeClass: "state-indigo",
         description: "Exploring safe memory concurrency and modern system programming concepts.",
         relevance: "Next-generation memory-safe systems programming."
       }
@@ -110,22 +111,22 @@ const PORTFOLIO_DATA = {
       {
         name: "SOC Operations",
         state: "Learning",
-        stateBadgeClass: "state-cyan",
+        stateBadgeClass: "state-indigo",
         description: "Understanding Security Operations Center workflows, alert triage pipelines, and escalation paths.",
         relevance: "Core preparation for entry-level Security Analyst roles."
       },
       {
         name: "SIEM",
         state: "Learning",
-        stateBadgeClass: "state-cyan",
+        stateBadgeClass: "state-indigo",
         description: "Studying central log aggregation, syslog collection, and basic detection rule correlation.",
         relevance: "Primary diagnostic tool for security event monitoring."
       },
       {
-        name: "Network Security",
+        name: "Networking",
         state: "Practicing",
-        stateBadgeClass: "state-emerald",
-        description: "Analyzing packet captures, identifying TCP handshake states, and studying firewall rules.",
+        stateBadgeClass: "state-cyan",
+        description: "Analyzing packet captures, identifying TCP handshake states, and studying network protocols.",
         relevance: "Inspecting malicious traffic patterns and network anomalies."
       },
       {
@@ -154,14 +155,14 @@ const PORTFOLIO_DATA = {
       {
         name: "Wireshark",
         state: "Practicing",
-        stateBadgeClass: "state-emerald",
+        stateBadgeClass: "state-cyan",
         description: "Inspecting raw packet captures (PCAP), analyzing TCP streams, and identifying unencrypted protocols.",
         relevance: "Deep packet analysis for network security investigation."
       },
       {
         name: "Nmap",
         state: "Practicing",
-        stateBadgeClass: "state-emerald",
+        stateBadgeClass: "state-cyan",
         description: "Running SYN scans, service version detection, and host discovery scans in test labs.",
         relevance: "Network reconnaissance and asset inventory auditing."
       },
@@ -173,9 +174,9 @@ const PORTFOLIO_DATA = {
         relevance: "Web application proxy analysis and header inspection."
       },
       {
-        name: "Ubuntu / Linux",
+        name: "Ubuntu/Linux",
         state: "Practicing",
-        stateBadgeClass: "state-emerald",
+        stateBadgeClass: "state-cyan",
         description: "Daily CLI operating environment, bash shell scripting, system permissions, and package management.",
         relevance: "Essential operating system environment for security operations."
       }
@@ -183,15 +184,15 @@ const PORTFOLIO_DATA = {
     infrastructure: [
       {
         name: "Docker",
-        state: "Exploring",
-        stateBadgeClass: "state-muted",
+        state: "Practicing",
+        stateBadgeClass: "state-cyan",
         description: "Containerizing isolated software applications and test environments using Docker Compose.",
         relevance: "Creating lightweight, reproducible security lab environments."
       },
       {
         name: "AWS",
-        state: "Exploring",
-        stateBadgeClass: "state-muted",
+        state: "Learning",
+        stateBadgeClass: "state-indigo",
         description: "Studying cloud computing fundamentals, EC2 instances, and security group ingress rules.",
         relevance: "Understanding cloud security infrastructure principles."
       }
@@ -231,14 +232,14 @@ const PORTFOLIO_DATA = {
       name: "Docker",
       category: "INFRASTRUCTURE",
       usage: "Virtual lab containerization & isolated application testing.",
-      status: "EXPLORING",
+      status: "PRACTICING",
       socRelevance: "Spinning up isolated test targets safely."
     },
     {
       name: "AWS",
       category: "INFRASTRUCTURE",
       usage: "Cloud infrastructure concepts, EC2 & security groups.",
-      status: "EXPLORING",
+      status: "LEARNING",
       socRelevance: "Understanding cloud network ingress and IAM concepts."
     }
   ],
@@ -498,18 +499,22 @@ const PORTFOLIO_DATA = {
   ],
 
   education: {
+    studentName: "Krish Kumar Dey",
     institution: "Ajeenkya DY Patil University (ADYPU)",
-    location: "Pune, Maharashtra, India",
-    degree: "Bachelor of Technology (B.Tech) in Computer Science & IT",
-    duration: "2025 — 2029 (Expected)",
+    location: "Lohegaon, Pune, Maharashtra, India",
+    degree: "Bachelor of Technology (B.Tech)",
+    branch: "Computer Science & IT",
+    focus: "Cybersecurity Focus",
+    timeline: "2025 – 2029 (Expected Graduation)",
+    targetRole: "SOC Analyst",
     status: "CURRENTLY ENROLLED",
     statusBadgeClass: "badge-in-progress",
-    relevantCoursework: [
-      "Computer Networks & TCP/IP Stack",
-      "Operating Systems & Linux Administration",
-      "Object-Oriented Programming (Python, C++, Java)",
-      "Database Management Systems & SQL",
-      "Data Structures & Algorithms"
+    focusTags: [
+      "Cybersecurity",
+      "Linux",
+      "Networking",
+      "SIEM",
+      "Security Monitoring"
     ]
   },
 

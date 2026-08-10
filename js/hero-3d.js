@@ -1,9 +1,10 @@
 /**
  * Krish Kumar Dey - Interactive 3D WebGL Security Network Hero Centerpiece
- * Production Optimization:
- * 1. IntersectionObserver to pause render loop when off-screen (Saves GPU/CPU)
- * 2. Adaptive Particle Density & Capped DPR on Mobile
- * 3. Mouse Raycasting HUD Node Tooltips & Smooth Parallax
+ * Reliable Interaction Audit:
+ * 1. Raycaster coordinates calculated relative to heroCanvas.getBoundingClientRect()
+ * 2. Pointer/Touch events attached directly to canvas and container
+ * 3. Node Hover highlight + persistent Node Inspection Modal on click/tap
+ * 4. IntersectionObserver rendering pause when offscreen
  */
 
 let heroCanvas, heroRenderer, heroScene, heroCamera;
@@ -14,15 +15,15 @@ let animFrameId = null;
 let isHeroVisible = true;
 
 const NODE_DEFINITIONS = [
-  { id: "node-core", name: "CENTRAL SEC CORE", role: "SIEM & Log Aggregation Engine", level: "CORE", color: 0x00E5FF },
-  { id: "node-net", name: "NETWORK TELEMETRY", role: "Wireshark PCAP & TCP Analysis", level: "INGRESS", color: 0x10B981 },
-  { id: "node-data", name: "DATA PROTECTION", role: "Encryption & Access ACLs", level: "STORAGE", color: 0x00E5FF },
-  { id: "node-det", name: "DETECTION RULES", role: "Splunk & Elastic Correlation", level: "ANALYTICS", color: 0xF59E0B },
-  { id: "node-ops", name: "SECURITY OPS", role: "Alert Triage & Incident Playbooks", level: "MONITOR", color: 0x10B981 },
-  { id: "node-auth", name: "ENDPOINT LOGS", role: "Ubuntu Auth & Linux Auditd", level: "ENDPOINT", color: 0x6366F1 },
-  { id: "node-fw", name: "FIREWALL & ROUTING", role: "pfSense Subnet Isolation", level: "EDGE", color: 0x00E5FF },
-  { id: "node-cloud", name: "CLOUD INFRASTRUCTURE", role: "AWS Security Groups & EC2", level: "CLOUD", color: 0xF59E0B },
-  { id: "node-intel", name: "THREAT INTEL", role: "IOC Extraction & Feeds", level: "INTEL", color: 0x10B981 }
+  { id: "node-core", name: "CENTRAL SEC CORE", role: "SIEM & Log Aggregation Engine", level: "CORE", color: 0x00E5FF, category: "SOC Operations", learningState: "Practicing" },
+  { id: "node-net", name: "NETWORK TELEMETRY", role: "Wireshark PCAP & TCP Analysis", level: "INGRESS", color: 0x10B981, category: "Networking", learningState: "Practicing" },
+  { id: "node-data", name: "DATA PROTECTION", role: "Encryption & Access ACLs", level: "STORAGE", color: 0x00E5FF, category: "Security Operations", learningState: "Practicing" },
+  { id: "node-det", name: "DETECTION RULES", role: "Splunk & Elastic Correlation", level: "ANALYTICS", color: 0xF59E0B, category: "SIEM", learningState: "Learning" },
+  { id: "node-ops", name: "SECURITY OPS", role: "Alert Triage & Incident Playbooks", level: "MONITOR", color: 0x10B981, category: "SOC Operations", learningState: "Learning" },
+  { id: "node-auth", name: "ENDPOINT LOGS", role: "Ubuntu Auth & Linux Auditd", level: "ENDPOINT", color: 0x6366F1, category: "Systems", learningState: "Practicing" },
+  { id: "node-fw", name: "FIREWALL & ROUTING", role: "pfSense Subnet Isolation", level: "EDGE", color: 0x00E5FF, category: "Networking", learningState: "Practicing" },
+  { id: "node-cloud", name: "CLOUD INFRASTRUCTURE", role: "AWS Security Groups & EC2", level: "CLOUD", color: 0xF59E0B, category: "Infrastructure", learningState: "Learning" },
+  { id: "node-intel", name: "THREAT INTEL", role: "IOC Extraction & Feeds", level: "INTEL", color: 0x10B981, category: "Security Automation", learningState: "Practicing" }
 ];
 
 function initHero3D() {
@@ -67,12 +68,20 @@ function initHero3D() {
   // 5. Build Abstract Security Network Topology
   buildSecurityNetworkTopology(isMobile);
 
-  // 6. Raycaster & Event Listeners
+  // 6. Raycaster Setup & Precise Event Binding
   raycaster = new THREE.Raycaster();
   rayMouse = new THREE.Vector2(-999, -999);
 
+  // Bind pointer and touch events directly to canvas & window
   window.addEventListener('resize', onWindowResize, false);
-  window.addEventListener('mousemove', onMouseMove, false);
+  
+  heroCanvas.addEventListener('pointermove', onCanvasPointerMove, { passive: true });
+  heroCanvas.addEventListener('pointerdown', onCanvasPointerDown, false);
+  heroCanvas.addEventListener('click', onCanvasClick, false);
+  
+  // Touch Handlers for Mobile Devices
+  heroCanvas.addEventListener('touchstart', onCanvasTouchStart, { passive: true });
+  heroCanvas.addEventListener('touchend', onCanvasTouchEnd, false);
 
   // 7. Performance Visibility Observer (Pause render loop when hero is off-screen)
   setupHeroVisibilityObserver(container);
@@ -238,9 +247,10 @@ function animateHero() {
   });
 
   // Raycasting for Interactive Node Hovering
-  raycaster.setFromCamera(rayMouse, heroCamera);
-  if (nodeGroup) {
+  if (raycaster && heroCamera && nodeGroup) {
+    raycaster.setFromCamera(rayMouse, heroCamera);
     const intersects = raycaster.intersectObjects(nodeGroup.children);
+
     if (intersects.length > 0) {
       const firstHit = intersects[0].object;
       if (hoveredNode !== firstHit) {
@@ -260,7 +270,69 @@ function animateHero() {
 }
 
 /* --------------------------------------------------------------------------
-   Node Highlighting & HUD Tooltips
+   Raycaster Coordinate Calculation (Accounts for Bounding Box & Page Scroll)
+   -------------------------------------------------------------------------- */
+function updateRayMouseFromEvent(event) {
+  if (!heroCanvas) return;
+  const rect = heroCanvas.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) return;
+
+  const clientX = event.clientX !== undefined ? event.clientX : (event.touches && event.touches[0] ? event.touches[0].clientX : 0);
+  const clientY = event.clientY !== undefined ? event.clientY : (event.touches && event.touches[0] ? event.touches[0].clientY : 0);
+
+  rayMouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+  rayMouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+
+  mouse.targetX = rayMouse.x;
+  mouse.targetY = rayMouse.y;
+}
+
+function onCanvasPointerMove(event) {
+  updateRayMouseFromEvent(event);
+  
+  const tooltip = document.getElementById('hero-node-tooltip');
+  if (tooltip && tooltip.classList.contains('show')) {
+    tooltip.style.left = `${event.clientX + 16}px`;
+    tooltip.style.top = `${event.clientY + 16}px`;
+  }
+}
+
+function onCanvasPointerDown(event) {
+  updateRayMouseFromEvent(event);
+  checkAndTriggerNodeClick();
+}
+
+function onCanvasClick(event) {
+  updateRayMouseFromEvent(event);
+  checkAndTriggerNodeClick();
+}
+
+function onCanvasTouchStart(event) {
+  if (event.touches && event.touches.length > 0) {
+    updateRayMouseFromEvent(event.touches[0]);
+  }
+}
+
+function onCanvasTouchEnd(event) {
+  checkAndTriggerNodeClick();
+}
+
+function checkAndTriggerNodeClick() {
+  if (!raycaster || !heroCamera || !nodeGroup) return;
+
+  raycaster.setFromCamera(rayMouse, heroCamera);
+  const intersects = raycaster.intersectObjects(nodeGroup.children);
+
+  if (intersects.length > 0) {
+    const clickedObj = intersects[0].object;
+    if (clickedObj && clickedObj.userData && clickedObj.userData.name) {
+      open3DNodeModal(clickedObj.userData);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Node Highlighting & Hover Tooltips
    -------------------------------------------------------------------------- */
 function highlightNode(node) {
   if (node.material && node.material.emissive) {
@@ -293,6 +365,7 @@ function showNodeTooltip(data) {
       <span class="tooltip-title">${data.name}</span>
     </div>
     <div class="tooltip-role">${data.role}</div>
+    <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--color-cyan); margin-top: 4px;">Click node to inspect details</div>
   `;
 
   tooltip.classList.add('show');
@@ -304,22 +377,58 @@ function hideNodeTooltip() {
 }
 
 /* --------------------------------------------------------------------------
-   Window Event Handlers
+   Persistent 3D Node Telemetry Inspector Modal
    -------------------------------------------------------------------------- */
-function onMouseMove(event) {
-  mouse.targetX = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.targetY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-  rayMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  rayMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-  const tooltip = document.getElementById('hero-node-tooltip');
-  if (tooltip && tooltip.classList.contains('show')) {
-    tooltip.style.left = `${event.clientX + 16}px`;
-    tooltip.style.top = `${event.clientY + 16}px`;
+function open3DNodeModal(data) {
+  let modal = document.getElementById('3d-node-inspector-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = '3d-node-inspector-modal';
+    modal.className = 'node-hud-modal';
+    document.body.appendChild(modal);
   }
+
+  modal.innerHTML = `
+    <div class="hud-modal-content">
+      <div class="hud-modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="hud-tag">3D TELEMETRY // [${data.level}]</span>
+          <span class="status-badge state-cyan">● ${data.learningState || 'Active Node'}</span>
+        </div>
+        <button class="hud-close-btn" onclick="document.getElementById('3d-node-inspector-modal').classList.remove('show')">✕</button>
+      </div>
+
+      <h2 class="hud-title">${data.name}</h2>
+      <div style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-cyan); margin-bottom: 16px;">CATEGORY: ${data.category || 'Cybersecurity Domain'}</div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-title" style="color: var(--color-emerald);">FUNCTIONAL ROLE & DESCRIPTION</div>
+        <p style="font-size: var(--fs-base); color: var(--text-secondary); line-height: 1.6; margin-bottom: 0;">${data.role}</p>
+      </div>
+
+      <div class="drawer-section" style="margin-top: 16px; background: var(--bg-elevated); padding: 14px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+        <div class="drawer-section-title" style="color: var(--color-cyan);">SOC ANALYST RELEVANCE</div>
+        <p style="font-size: var(--fs-sm); color: var(--text-primary); margin-bottom: 0; font-weight: var(--fw-medium);">
+          Active telemetry node representing real-time security monitoring, log aggregation pipelines, and diagnostic analysis.
+        </p>
+      </div>
+
+      <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-subtle); text-align: right;">
+        <button class="btn btn-secondary" onclick="document.getElementById('3d-node-inspector-modal').classList.remove('show')">
+          <span>Close Inspector</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  setTimeout(() => {
+    modal.classList.add('show');
+  }, 10);
 }
 
+/* --------------------------------------------------------------------------
+   Window Event Handlers
+   -------------------------------------------------------------------------- */
 function onWindowResize() {
   const container = document.getElementById('hero-3d-container');
   if (!container || !heroRenderer || !heroCamera) return;

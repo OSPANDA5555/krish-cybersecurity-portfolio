@@ -1,219 +1,229 @@
 /**
- * Krish Kumar Dey - Interactive Technical Skills Constellation System
- * Non-linear 2D SVG Constellation Radar with Honest Proficiency States
- * Categories: PROGRAMMING | CYBERSECURITY | SECURITY TOOLS | INFRASTRUCTURE
+ * Krish Kumar Dey - Interactive Technical Skill Constellation Engine
+ * Features:
+ * 1. 2D SVG Radar Constellation Network Visualizer
+ * 2. Category Tab Filtering (ALL, PROGRAMMING, CYBERSECURITY, TOOLS, INFRASTRUCTURE)
+ * 3. Reliable Mouse Hover & Click Interaction for EVERY Technology Node
+ * 4. HUD Telemetry Skill Inspector Panel Updates (Title, Category, Honest State, Description, SOC Relevance)
  */
 
-function initSkillsInteractive() {
-  const container = document.getElementById('interactive-skills-container');
-  if (!container || !PORTFOLIO_DATA || !PORTFOLIO_DATA.technicalSkills) return;
+let selectedSkillNode = null;
+let currentSkillCategory = 'ALL';
 
+function initSkillsInteractive() {
   renderCategoryTabs();
-  renderConstellationGraph('ALL');
-  
-  // Select first skill by default in inspector
-  if (PORTFOLIO_DATA.technicalSkills.length > 0) {
-    updateSkillInspector(PORTFOLIO_DATA.technicalSkills[0]);
-  }
+  renderConstellationGraph();
+  renderMobileSkillFallbackCards();
 }
 
 /* --------------------------------------------------------------------------
-   Category Filter Tabs
+   Category Tabs Bar
    -------------------------------------------------------------------------- */
 function renderCategoryTabs() {
-  const tabsContainer = document.getElementById('skill-category-tabs');
-  if (!tabsContainer) return;
+  const container = document.getElementById('skill-category-tabs');
+  if (!container) return;
 
   const categories = [
-    { key: 'ALL', label: 'ALL CATEGORIES' },
-    { key: 'PROGRAMMING', label: 'PROGRAMMING' },
-    { key: 'CYBERSECURITY', label: 'CYBERSECURITY' },
-    { key: 'SECURITY TOOLS', label: 'SECURITY TOOLS' },
-    { key: 'INFRASTRUCTURE', label: 'INFRASTRUCTURE' }
+    { id: 'ALL', label: 'ALL DOMAINS' },
+    { id: 'PROGRAMMING', label: 'PROGRAMMING' },
+    { id: 'CYBERSECURITY', label: 'CYBERSECURITY' },
+    { id: 'TOOLS', label: 'SECURITY TOOLS' },
+    { id: 'INFRASTRUCTURE', label: 'INFRASTRUCTURE' }
   ];
 
-  tabsContainer.innerHTML = categories.map((cat, idx) => `
-    <button class="skill-tab-btn ${idx === 0 ? 'active' : ''}" data-cat="${cat.key}">
+  container.innerHTML = categories.map(cat => `
+    <button class="skill-cat-btn ${cat.id === currentSkillCategory ? 'active' : ''}" data-category="${cat.id}">
       <span>${cat.label}</span>
     </button>
   `).join('');
 
-  const tabBtns = tabsContainer.querySelectorAll('.skill-tab-btn');
-  tabBtns.forEach(btn => {
+  const btns = container.querySelectorAll('.skill-cat-btn');
+  btns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
+      btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const catKey = btn.getAttribute('data-cat');
-      renderConstellationGraph(catKey);
+      currentSkillCategory = btn.getAttribute('data-category');
+      renderConstellationGraph();
+      renderMobileSkillFallbackCards();
     });
   });
 }
 
 /* --------------------------------------------------------------------------
-   SVG Constellation Graph & Node Layout
+   Flatten Skill Items with Category Mapping
    -------------------------------------------------------------------------- */
-function renderConstellationGraph(activeCategory) {
-  const svgCanvas = document.getElementById('constellation-svg');
-  const nodesGridContainer = document.getElementById('skills-fallback-grid');
-  if (!svgCanvas) return;
+function getFlattenedSkills() {
+  if (!PORTFOLIO_DATA || !PORTFOLIO_DATA.skillsCategorized) return [];
+  const cat = PORTFOLIO_DATA.skillsCategorized;
 
-  const allSkills = PORTFOLIO_DATA.technicalSkills;
+  const all = [
+    ...cat.programming.map(s => ({ ...s, category: 'PROGRAMMING' })),
+    ...cat.cybersecurity.map(s => ({ ...s, category: 'CYBERSECURITY' })),
+    ...cat.tools.map(s => ({ ...s, category: 'SECURITY TOOLS' })),
+    ...cat.infrastructure.map(s => ({ ...s, category: 'INFRASTRUCTURE' }))
+  ];
 
-  // Filter skills based on selected category tab
-  const filteredSkills = activeCategory === 'ALL' 
-    ? allSkills 
-    : allSkills.filter(s => s.category === activeCategory);
+  if (currentSkillCategory === 'ALL') return all;
+  if (currentSkillCategory === 'TOOLS') return all.filter(s => s.category === 'SECURITY TOOLS');
+  return all.filter(s => s.category === currentSkillCategory);
+}
 
-  // SVG Dimensions & Center Coordinates
+/* --------------------------------------------------------------------------
+   Render SVG Constellation Graph
+   -------------------------------------------------------------------------- */
+function renderConstellationGraph() {
+  const svg = document.getElementById('constellation-svg');
+  if (!svg) return;
+
+  const skills = getFlattenedSkills();
   const width = 800;
   const height = 540;
   const cx = width / 2;
   const cy = height / 2;
 
-  // 4 Category Hub Positions
+  // Category Hub Centers
   const categoryHubs = {
-    'PROGRAMMING': { x: 220, y: 150, color: '#6366F1' },
-    'CYBERSECURITY': { x: 580, y: 150, color: '#10B981' },
-    'SECURITY TOOLS': { x: 220, y: 390, color: '#00E5FF' },
-    'INFRASTRUCTURE': { x: 580, y: 390, color: '#F59E0B' }
+    'PROGRAMMING': { x: cx - 220, y: cy - 130, label: 'PROGRAMMING', color: '#00E5FF' },
+    'CYBERSECURITY': { x: cx + 220, y: cy - 130, label: 'CYBERSECURITY', color: '#6366F1' },
+    'SECURITY TOOLS': { x: cx - 180, y: cy + 140, label: 'SECURITY TOOLS', color: '#10B981' },
+    'INFRASTRUCTURE': { x: cx + 180, y: cy + 140, label: 'INFRASTRUCTURE', color: '#F59E0B' }
   };
 
-  // Calculate satellite node positions relative to their category hub
-  const skillsWithPos = allSkills.map(skill => {
-    const hub = categoryHubs[skill.category];
-    return { ...skill, hubX: hub.x, hubY: hub.y, hubColor: hub.color };
+  // Calculate Node Layout Positions
+  const nodePositions = [];
+  const categoryCounts = {};
+
+  skills.forEach((skill, idx) => {
+    const hub = categoryHubs[skill.category] || { x: cx, y: cy, color: '#00E5FF' };
+    categoryCounts[skill.category] = (categoryCounts[skill.category] || 0) + 1;
+    const count = categoryCounts[skill.category];
+
+    const angle = (count * 1.3) + (idx * 0.4);
+    const radius = 65 + (count * 20);
+
+    const x = Math.max(50, Math.min(width - 50, hub.x + Math.cos(angle) * radius));
+    const y = Math.max(40, Math.min(height - 40, hub.y + Math.sin(angle) * (radius * 0.8)));
+
+    nodePositions.push({ skill, x, y, hub });
   });
 
-  // Specific satellite offsets per skill to prevent overlaps
-  const offsets = {
-    'python': [-90, -40], 'java': [90, -40], 'cpp': [-90, 40], 'rust': [90, 40],
-    'soc-ops-skill': [-100, -50], 'siem-skill': [0, -70], 'net-sec-skill': [100, -50],
-    'vuln-assess': [-100, 50], 'web-sec': [0, 70], 'sec-mon': [100, 50],
-    'burp': [-90, -40], 'nmap': [90, -40], 'wireshark': [-90, 40], 'linux-os': [90, 40],
-    'docker': [-80, 0], 'aws': [80, 0]
-  };
-
+  // Render SVG Elements: Concentric Background Radar Rings, Hub Lines, Inter-Node Lines & Skill Nodes
   let svgContent = `
-    <!-- Background Grid Pattern & Central Core Node -->
-    <defs>
-      <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.4"/>
-        <stop offset="100%" stop-color="#00E5FF" stop-opacity="0"/>
-      </radialGradient>
-      <filter id="glowEffect">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-        <feMerge>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-
-    <!-- Center Hub to Category Hub Connecting Lines -->
-    <circle cx="${cx}" cy="${cy}" r="38" fill="#0D111A" stroke="#00E5FF" stroke-width="2" filter="url(#glowEffect)"/>
-    <text x="${cx}" y="${cy + 4}" text-anchor="middle" fill="#00E5FF" font-family="JetBrains Mono" font-size="11" font-weight="bold">CORE.NODE</text>
+    <!-- Background Radar Target Rings -->
+    <circle cx="${cx}" cy="${cy}" r="220" fill="none" stroke="#121824" stroke-width="1" stroke-dasharray="4 4" />
+    <circle cx="${cx}" cy="${cy}" r="140" fill="none" stroke="#121824" stroke-width="1" stroke-dasharray="2 2" />
+    <line x1="${cx}" y1="30" x2="${cx}" y2="${height - 30}" stroke="#121824" stroke-width="1" />
+    <line x1="40" y1="${cy}" x2="${width - 40}" y2="${cy}" stroke="#121824" stroke-width="1" />
   `;
 
-  // Draw Lines from Core to Category Hubs
-  Object.entries(categoryHubs).forEach(([catName, hub]) => {
-    const isCatActive = activeCategory === 'ALL' || activeCategory === catName;
-    const opacity = isCatActive ? '0.4' : '0.1';
-    
+  // Draw Category Hub Lines
+  Object.keys(categoryHubs).forEach(catKey => {
+    const h = categoryHubs[catKey];
     svgContent += `
-      <line x1="${cx}" y1="${cy}" x2="${hub.x}" y2="${hub.y}" stroke="${hub.color}" stroke-width="1.5" stroke-dasharray="4,4" opacity="${opacity}"/>
-      
-      <!-- Category Hub Circle -->
-      <circle cx="${hub.x}" cy="${hub.y}" r="22" fill="#121824" stroke="${hub.color}" stroke-width="2" opacity="${isCatActive ? '1' : '0.3'}"/>
-      <text x="${hub.x}" y="${hub.y + 4}" text-anchor="middle" fill="${hub.color}" font-family="JetBrains Mono" font-size="9" font-weight="bold" opacity="${isCatActive ? '1' : '0.3'}">${catName.substring(0, 4)}</text>
+      <line x1="${cx}" y1="${cy}" x2="${h.x}" y2="${h.y}" stroke="${h.color}" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="6 4" />
+      <circle cx="${h.x}" cy="${h.y}" r="28" fill="${h.color}" fill-opacity="0.06" stroke="${h.color}" stroke-opacity="0.3" stroke-width="1" />
+      <text x="${h.x}" y="${h.y + 4}" fill="${h.color}" font-family="var(--font-mono)" font-size="10" font-weight="bold" text-anchor="middle">${h.label}</text>
     `;
   });
 
-  // Draw Lines & Satellite Nodes for each skill
-  skillsWithPos.forEach(skill => {
-    const offset = offsets[skill.id] || [0, 0];
-    const nx = skill.hubX + offset[0];
-    const ny = skill.hubY + offset[1];
+  // Draw Connection Lines between Nodes and Category Hubs
+  nodePositions.forEach(np => {
+    svgContent += `
+      <line x1="${np.hub.x}" y1="${np.hub.y}" x2="${np.x}" y2="${np.y}" stroke="${np.hub.color}" stroke-opacity="0.25" stroke-width="1" />
+    `;
+  });
 
-    const isMatch = activeCategory === 'ALL' || activeCategory === skill.category;
-    const opacity = isMatch ? '1' : '0.15';
-    const stateColorHex = skill.stateColor === 'cyan' ? '#00E5FF' : (skill.stateColor === 'emerald' ? '#10B981' : (skill.stateColor === 'amber' ? '#F59E0B' : '#6366F1'));
+  // Draw Node Group Interactive Elements
+  nodePositions.forEach((np, i) => {
+    const isSelected = selectedSkillNode && selectedSkillNode.name === np.skill.name;
+    const nodeColor = np.hub.color;
 
     svgContent += `
-      <g class="constellation-node-group ${isMatch ? 'node-active' : 'node-dimmed'}" data-skill-id="${skill.id}" transform="translate(0, 0)" style="opacity: ${opacity}; cursor: pointer;">
-        <!-- Line connecting Category Hub to Skill Satellite -->
-        <line x1="${skill.hubX}" y1="${skill.hubY}" x2="${nx}" y2="${ny}" stroke="${stateColorHex}" stroke-width="1.2" opacity="0.35"/>
-        
-        <!-- Outer Glowing Node Circle -->
-        <circle class="node-circle-outer" cx="${nx}" cy="${ny}" r="14" fill="#0D111A" stroke="${stateColorHex}" stroke-width="1.5"/>
-        <circle class="node-circle-inner" cx="${nx}" cy="${ny}" r="4" fill="${stateColorHex}"/>
-        
-        <!-- Skill Title Text -->
-        <text class="node-label" x="${nx}" y="${ny + 26}" text-anchor="middle" fill="#F8FAFC" font-family="Inter" font-size="11" font-weight="500">${skill.name}</text>
+      <g class="skill-node-group ${isSelected ? 'selected' : ''}" data-index="${i}" style="cursor: pointer;">
+        <circle cx="${np.x}" cy="${np.y}" r="18" fill="#0C1017" stroke="${nodeColor}" stroke-width="${isSelected ? 2.5 : 1.5}" class="node-outer-ring" />
+        <circle cx="${np.x}" cy="${np.y}" r="6" fill="${nodeColor}" class="node-core-dot" />
+        <text x="${np.x}" y="${np.y + 32}" fill="#F3F4F6" font-family="var(--font-primary)" font-size="11" font-weight="600" text-anchor="middle">${np.skill.name}</text>
       </g>
     `;
   });
 
-  svgCanvas.innerHTML = svgContent;
+  svg.innerHTML = svgContent;
 
-  // Add Interactive Hover & Click Listeners to Node Groups
-  const nodeGroups = svgCanvas.querySelectorAll('.constellation-node-group');
-  nodeGroups.forEach(group => {
-    const skillId = group.getAttribute('data-skill-id');
-    const skillObj = allSkills.find(s => s.id === skillId);
+  // Attach Event Listeners to every SVG skill node group
+  const nodeGroups = svg.querySelectorAll('.skill-node-group');
+  nodeGroups.forEach(g => {
+    const idx = parseInt(g.getAttribute('data-index'), 10);
+    const np = nodePositions[idx];
+    if (!np) return;
 
-    group.addEventListener('mouseenter', () => {
-      if (skillObj) updateSkillInspector(skillObj);
-      nodeGroups.forEach(g => g.classList.remove('highlighted'));
-      group.classList.add('highlighted');
+    g.addEventListener('mouseenter', () => {
+      updateSkillInspectorPanel(np.skill);
     });
 
-    group.addEventListener('click', () => {
-      if (skillObj) updateSkillInspector(skillObj);
+    g.addEventListener('click', () => {
+      selectedSkillNode = np.skill;
+      updateSkillInspectorPanel(np.skill);
+      nodeGroups.forEach(n => n.classList.remove('selected'));
+      g.classList.add('selected');
     });
   });
 
-  // Render Mobile Fallback Responsive Skill Cards
-  if (nodesGridContainer) {
-    nodesGridContainer.innerHTML = filteredSkills.map(skill => `
-      <div class="skill-fallback-card ${activeCategory !== 'ALL' && activeCategory === skill.category ? 'active' : ''}" data-skill-id="${skill.id}">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-          <h4 style="font-size: var(--fs-base); font-weight: var(--fw-bold); color: var(--text-primary);">${skill.name}</h4>
-          <span class="state-badge state-${skill.stateColor}">${skill.state}</span>
-        </div>
-        <div style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-cyan); margin-bottom: 6px;">${skill.category}</div>
-        <p style="font-size: var(--fs-xs); color: var(--text-secondary); margin-bottom: 0;">${skill.description}</p>
-      </div>
-    `).join('');
-
-    const fallbackCards = nodesGridContainer.querySelectorAll('.skill-fallback-card');
-    fallbackCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        const skillId = card.getAttribute('data-skill-id');
-        const skillObj = allSkills.find(s => s.id === skillId);
-        if (skillObj) updateSkillInspector(skillObj);
-      });
-    });
+  // Select initial node if none selected
+  if (skills.length > 0 && !selectedSkillNode) {
+    selectedSkillNode = skills[0];
+    updateSkillInspectorPanel(selectedSkillNode);
   }
 }
 
 /* --------------------------------------------------------------------------
-   Telemetry Skill Inspector Panel Updater
+   Update HUD Skill Inspector Panel
    -------------------------------------------------------------------------- */
-function updateSkillInspector(skill) {
-  const titleElem = document.getElementById('inspector-title');
-  const catElem = document.getElementById('inspector-category');
-  const stateElem = document.getElementById('inspector-state');
-  const descElem = document.getElementById('inspector-description');
-  const relevanceElem = document.getElementById('inspector-relevance');
+function updateSkillInspectorPanel(skill) {
+  const catTag = document.getElementById('inspector-category');
+  const stateTag = document.getElementById('inspector-state');
+  const titleTag = document.getElementById('inspector-title');
+  const descTag = document.getElementById('inspector-description');
+  const relTag = document.getElementById('inspector-relevance');
 
-  if (titleElem) titleElem.textContent = skill.name;
-  if (catElem) catElem.textContent = skill.category;
-  
-  if (stateElem) {
-    stateElem.textContent = skill.state;
-    stateElem.className = `state-badge state-${skill.stateColor}`;
+  if (catTag) catTag.textContent = skill.category;
+  if (stateTag) {
+    stateTag.textContent = skill.state;
+    stateTag.className = `state-badge ${skill.stateBadgeClass}`;
   }
+  if (titleTag) titleTag.textContent = skill.name;
+  if (descTag) descTag.textContent = skill.description;
+  if (relTag) relTag.textContent = skill.relevance;
+}
 
-  if (descElem) descElem.textContent = skill.description;
-  if (relevanceElem) relevanceElem.textContent = skill.relevance;
+/* --------------------------------------------------------------------------
+   Mobile Fallback Cards Grid
+   -------------------------------------------------------------------------- */
+function renderMobileSkillFallbackCards() {
+  const container = document.getElementById('skills-fallback-grid');
+  if (!container) return;
+
+  const skills = getFlattenedSkills();
+
+  container.innerHTML = skills.map(skill => `
+    <div class="skill-fallback-card" onclick="updateSkillInspectorPanelFromMobile('${skill.name}')">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+        <h4 style="font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--text-primary); margin: 0;">${skill.name}</h4>
+        <span class="state-badge ${skill.stateBadgeClass}">● ${skill.state}</span>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-cyan); margin-bottom: 6px;">${skill.category}</div>
+      <p style="font-size: var(--fs-xs); color: var(--text-secondary); margin-bottom: 0;">${skill.description}</p>
+    </div>
+  `).join('');
+}
+
+function updateSkillInspectorPanelFromMobile(skillName) {
+  const allSkills = getFlattenedSkills();
+  const found = allSkills.find(s => s.name === skillName);
+  if (found) {
+    updateSkillInspectorPanel(found);
+    const inspectorCard = document.getElementById('skill-inspector-card');
+    if (inspectorCard) {
+      inspectorCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
 }

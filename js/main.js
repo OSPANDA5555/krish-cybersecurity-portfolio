@@ -264,29 +264,69 @@ function renderCurrentlyLearning() {
 // Education Section
 function renderEducation() {
   const container = document.getElementById('educationContainer');
-  if (!container) return;
+  if (!container || !PORTFOLIO_DATA || !PORTFOLIO_DATA.education) return;
 
   const edu = PORTFOLIO_DATA.education;
-  container.innerHTML = `
-    <div class="edu-grid">
-      <div>
-        <span class="status-pill" style="margin-bottom: var(--space-3);">UNDERGRADUATE DEGREE</span>
-        <h3 style="font-size: var(--fs-2xl); font-weight: var(--fw-bold); margin-bottom: var(--space-1);">${edu.degree}</h3>
-        <div style="font-size: var(--fs-lg); color: var(--color-cyan); font-weight: var(--fw-semibold); margin-bottom: var(--space-2);">${edu.institution}</div>
-        <div style="font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-muted); margin-bottom: var(--space-4);">${edu.location} | Expected Graduation: ${edu.expectedGraduation}</div>
-        <p style="font-size: var(--fs-sm);">
-          Pursuing a four-year technical degree focusing on computer networking, systems programming, algorithms, and cybersecurity fundamentals.
-        </p>
-      </div>
 
-      <div>
-        <h4 style="font-size: var(--fs-base); font-weight: var(--fw-semibold); margin-bottom: var(--space-3); color: var(--text-primary);">Key Academic Coursework</h4>
-        <div class="coursework-list">
-          ${edu.coursework.map(c => `<div class="course-item"><span>${c}</span></div>`).join('')}
+  container.innerHTML = `
+    <div class="education-tech-card">
+      
+      <!-- Top Header: University Badge & Timeline -->
+      <div class="edu-card-header">
+        <div class="edu-uni-badge">
+          <div class="edu-uni-icon">
+            <i data-lucide="graduation-cap" style="width: 24px; height: 24px;" aria-hidden="true"></i>
+          </div>
+          <div>
+            <h3 class="edu-uni-title">${edu.institution}</h3>
+            <div class="edu-uni-sub">📍 ${edu.location}</div>
+          </div>
+        </div>
+
+        <div class="edu-timeline-badge">
+          <span>📅 ${edu.timeline}</span>
         </div>
       </div>
+
+      <!-- Degree & Branch Box -->
+      <div class="edu-degree-box">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <h4 class="edu-degree-title">${edu.degree}</h4>
+          <span class="status-badge ${edu.statusBadgeClass}">● ${edu.status}</span>
+        </div>
+        <div class="edu-branch-title">BRANCH: ${edu.branch} | ${edu.focus}</div>
+        
+        <!-- Meta Details Grid -->
+        <div class="edu-meta-grid">
+          <div class="edu-meta-item">
+            <span class="meta-item-label">STUDENT</span>
+            <span class="meta-item-value">${edu.studentName}</span>
+          </div>
+          <div class="edu-meta-item">
+            <span class="meta-item-label">CAREER TARGET</span>
+            <span class="meta-item-value" style="color: var(--color-cyan);">${edu.targetRole}</span>
+          </div>
+          <div class="edu-meta-item">
+            <span class="meta-item-label">TIMELINE</span>
+            <span class="meta-item-value">2025 – 2029</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relevant Academic Focus Tags -->
+      <div>
+        <div style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 8px;">RELEVANT ACADEMIC FOCUS:</div>
+        <div class="edu-focus-tags">
+          ${edu.focusTags.map(t => `<span class="tag-pill" style="font-size: 0.8rem; padding: 4px 12px;">${t}</span>`).join('')}
+        </div>
+      </div>
+
     </div>
   `;
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
 
 // Set Current Year in Footer
