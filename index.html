@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Krish Kumar Dey - Aspiring SOC Analyst & Cybersecurity Student at Ajeenkya DY Patil University, Pune. Focused on SIEM, Linux, networking, and threat monitoring.">
+  <meta name="keywords" content="Krish Kumar Dey, Krish, SOC Analyst, Cybersecurity Portfolio, Ajeenkya DY Patil University, Wireshark, Nmap, Linux, Python, TryHackMe, Hack The Box">
+  <meta name="author" content="Krish Kumar Dey">
+
+  <!-- Open Graph / Social Media Metadata -->
+  <meta property="og:title" content="Krish Kumar Dey | Aspiring SOC Analyst">
+  <meta property="og:description" content="Personal cybersecurity portfolio of Krish Kumar Dey. Computer Science student at ADYPU Pune focusing on SIEM, Linux administration, and network security.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://krishdey-soc.portfolio">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Krish Kumar Dey | Aspiring SOC Analyst">
+  <meta name="twitter:description" content="Cybersecurity student studying SIEM, Linux, networking, and security monitoring.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- SVG Shield Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300E5FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/></svg>">
+  <link rel="canonical" href="https://krishdey-soc.portfolio">
+
+  <title>Krish Kumar Dey | Aspiring SOC Analyst</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Three.js WebGL Engine CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet Pipeline -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Hairline Scroll Progress Bar -->
+  <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="brand-logo" aria-label="Krish Dey SOC Portfolio Home">
+        <div class="brand-icon">
+          <i data-lucide="shield" aria-hidden="true"></i>
+        </div>
+        <span>KRISH DEY <span style="color: var(--color-cyan);">// SOC-OPS</span></span>
+      </a>
+
+      <!-- Streamlined 7-Item Navigation Bar -->
+      <nav aria-label="Main Navigation" role="navigation">
+        <div class="nav-links" id="navLinks">
+          <a href="#hero" class="nav-link active" aria-current="page">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#tools" class="nav-link">Cybersecurity Lab</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#journey" class="nav-link">Journey</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: var(--space-3);">
+        <a href="#contact" class="status-pill" title="Available for SOC Internship / Trainee Positions">
+          <span class="status-dot"></span>
+          <span>SOC ROLE READY</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main id="main-content">
+
+    <!-- 1. HERO SECTION (10-Second Recruiter Impression Centerpiece) -->
+    <section class="hero" id="hero">
+      
+      <!-- 3D Canvas Background & Vignette Overlays -->
+      <div class="hero-3d-container" id="hero-3d-container">
+        <canvas id="hero-3d-canvas"></canvas>
+        <div class="hero-vignette-overlay"></div>
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="hero-grid">
+          
+          <div class="hero-content">
+            
+            <!-- Learning / Status Badge Indicator -->
+            <div class="status-pill" style="margin-bottom: var(--space-4); display: inline-flex; border-color: var(--border-cyan-glow); background: rgba(0, 229, 255, 0.08);">
+              <span class="status-dot" style="background: var(--color-cyan); box-shadow: 0 0 8px var(--color-cyan);"></span>
+              <span style="color: var(--color-cyan); font-family: var(--font-mono); font-size: var(--fs-xs);">Currently learning → SIEM & SOC Operations</span>
+            </div>
+            
+            <h1 class="hero-name">
+              KRISH KUMAR DEY
+            </h1>
+            
+            <div class="hero-target">
+              <i data-lucide="shield-check" style="width: 26px; height: 26px;" aria-hidden="true"></i>
+              <span>ASPIRING SOC ANALYST</span>
+            </div>
+            
+            <p class="hero-bio">
+              Cybersecurity-focused Computer Science student (B.Tech CS & IT '29, ADYPU) exploring SIEM log aggregation, Linux administration, network telemetry, and security monitoring.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#tools" class="btn btn-primary">
+                <span>Explore My Work</span>
+                <i data-lucide="arrow-right" style="width: 16px; height: 16px;" aria-hidden="true"></i>
+              </a>
+              <a href="#journey" class="btn btn-secondary">
+                <i data-lucide="milestone" style="width: 16px; height: 16px;" aria-hidden="true"></i>
+                <span>Cybersecurity Journey</span>
+              </a>
+              <button class="btn btn-secondary btn-resume-cta" title="Download Resume / CV PDF Placeholder">
+                <i data-lucide="file-text" style="width: 16px; height: 16px;" aria-hidden="true"></i>
+                <span>Resume / CV PDF</span>
+              </button>
+            </div>
+
+            <div class="hero-meta-badges">
+              <div class="meta-badge-item">
+                <span class="meta-badge-label">UNIVERSITY</span>
+                <span class="meta-badge-value">ADYPU, Pune</span>
+              </div>
+              <div class="meta-badge-item">
+                <span class="meta-badge-label">DEGREE</span>
+                <span class="meta-badge-value">B.Tech CS & IT ('29)</span>
+              </div>
+              <div class="meta-badge-item">
+                <span class="meta-badge-label">3D TELEMETRY</span>
+                <span class="meta-badge-value" style="color: var(--color-emerald);">Click Nodes to Inspect</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Telemetry Terminal HUD Overlay -->
+          <div class="hero-telemetry">
+            <div class="terminal-card">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <div class="terminal-title">krish@soc-node-01:~ (bash)</div>
+                <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-emerald);">● ONLINE</div>
+              </div>
+
+              <div class="terminal-tabs">
+                <div class="terminal-tab active" data-tab="status">telemetry.sh</div>
+                <div class="terminal-tab" data-tab="stack">tools.json</div>
+                <div class="terminal-tab" data-tab="platforms">profiles.conf</div>
+              </div>
+
+              <div class="terminal-body" id="terminalBody">
+                <!-- Dynamically populated via JS -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="user" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>01. BACKGROUND & PHILOSOPHY</span>
+          </div>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">Dedicated to analytical security investigation, continuous skill development, and strong foundational engineering principles.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3 style="font-size: var(--fs-xl); margin-bottom: var(--space-4); color: var(--color-cyan);">Academic & Focus</h3>
+            <p>
+              I am currently pursuing a Bachelor of Technology in Computer Science & IT at Ajeenkya DY Patil University (ADYPU) in Pune, with an expected graduation in 2029. 
+            </p>
+            <p>
+              My goal is to enter the field of cybersecurity as a Security Operations Center (SOC) Analyst, specializing in real-time alert triage, packet capture analysis, network intrusion detection, and system logging.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3 style="font-size: var(--fs-xl); margin-bottom: var(--space-4); color: var(--color-emerald);">Analytical Mindset & Ethics</h3>
+            <p>
+              I believe effective defense stems from deep curiosity and methodological rigor. I approach security by understanding how protocols communicate under the hood, how Linux systems manage permissions, and how network traffic behaves under normal versus anomalous conditions.
+            </p>
+            <p style="margin-bottom: 0;">
+              Every concept is practiced hands-on in controlled virtual lab environments, adhering to strict legal and ethical security guidelines.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CYBERSECURITY FOCUS SECTION -->
+    <section class="section" id="focus">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="target" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>02. SPECIALIZATION</span>
+          </div>
+          <h2 class="section-title">Cybersecurity Focus</h2>
+          <p class="section-subtitle">Core domains driving my technical preparation and defensive security training.</p>
+        </div>
+
+        <div class="focus-grid" id="focusContainer">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. INTERACTIVE TECHNICAL SKILLS CONSTELLATION SECTION -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="code" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>03. TECHNICAL CAPABILITIES</span>
+          </div>
+          <h2 class="section-title">Technical Skills Constellation</h2>
+          <p class="section-subtitle">
+            Interactive skill map categorized across Programming, Cybersecurity, Security Tools, and Infrastructure. Hover or tap nodes to inspect honest proficiency states.
+          </p>
+        </div>
+
+        <!-- Category Filter Bar -->
+        <div class="skill-category-tabs" id="skill-category-tabs">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Interactive Constellation Grid (SVG Radar + HUD Inspector Card) -->
+        <div class="interactive-skills-container" id="interactive-skills-container">
+          
+          <!-- Left: SVG Constellation Radar Graph -->
+          <div class="constellation-canvas-wrapper">
+            <svg id="constellation-svg" viewBox="0 0 800 540" preserveAspectRatio="xMidYMid meet"></svg>
+          </div>
+
+          <!-- Right: HUD Skill Telemetry Inspector Panel -->
+          <div class="skill-inspector-card" id="skill-inspector-card">
+            <div class="inspector-header">
+              <div class="inspector-cat-tag" id="inspector-category">CYBERSECURITY</div>
+              <span class="state-badge state-cyan" id="inspector-state">Practicing</span>
+            </div>
+
+            <h3 class="inspector-skill-title" id="inspector-title">Select a Skill Node</h3>
+            
+            <p class="inspector-desc" id="inspector-description">
+              Hover over or click any technology node in the constellation radar to inspect practical use cases, domain context, and honest learning states.
+            </p>
+
+            <div class="inspector-relevance-box">
+              <span class="box-label">SOC RELEVANCE:</span>
+              <span id="inspector-relevance">Real-time alert investigation and telemetry analysis.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mobile Fallback Skill Cards Grid -->
+        <div class="skills-fallback-grid" id="skills-fallback-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. CYBERSECURITY LAB & INTERACTIVE SOC DASHBOARD -->
+    <section class="section" id="tools">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="wrench" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>04. SOC TELEMETRY LAB</span>
+          </div>
+          <h2 class="section-title">Cybersecurity Lab Dashboard</h2>
+          <p class="section-subtitle">
+            Interactive conceptual Security Operations Center (SOC) telemetry lab visualizer featuring live simulated log streams, network topology paths, and tool diagnostics.
+          </p>
+        </div>
+
+        <!-- Dashboard Disclaimer Bar & Info Modal Trigger -->
+        <div class="soc-disclaimer-bar">
+          <div class="status-pill" style="border-color: var(--border-cyan-glow); background: rgba(0, 229, 255, 0.08);">
+            <span class="status-dot" style="background: var(--color-cyan);"></span>
+            <span style="color: var(--color-cyan); font-family: var(--font-mono); font-size: var(--fs-xs);">● SIMULATED TELEMETRY // DEMO MODE</span>
+          </div>
+
+          <button class="btn btn-secondary" id="soc-info-btn" style="padding: 4px 14px; font-size: 0.75rem;">
+            <i data-lucide="help-circle" style="width: 14px; height: 14px;" aria-hidden="true"></i>
+            <span>What you're seeing</span>
+          </button>
+        </div>
+
+        <!-- SOC Dashboard HUD Container -->
+        <div class="soc-dashboard-container" id="soc-dashboard-container">
+          
+          <!-- Dashboard Control Bar: View Switchers & Category Filters -->
+          <div class="soc-control-bar">
+            
+            <!-- Views Switcher -->
+            <div class="soc-view-switchers">
+              <button class="soc-view-btn active" data-view="stream">
+                <i data-lucide="activity" style="width: 14px; height: 14px;" aria-hidden="true"></i>
+                <span>LIVE STREAM (Simulated)</span>
+              </button>
+              <button class="soc-view-btn" data-view="topology">
+                <i data-lucide="network" style="width: 14px; height: 14px;" aria-hidden="true"></i>
+                <span>TOPOLOGY</span>
+              </button>
+              <button class="soc-view-btn" data-view="stack">
+                <i data-lucide="layers" style="width: 14px; height: 14px;" aria-hidden="true"></i>
+                <span>MODULE STACK</span>
+              </button>
+            </div>
+
+            <!-- Domain Category Filters -->
+            <div class="soc-filter-pills">
+              <button class="soc-filter-pill active" data-category="ALL">ALL</button>
+              <button class="soc-filter-pill" data-category="NETWORK">NETWORK</button>
+              <button class="soc-filter-pill" data-category="WEB SECURITY">WEB</button>
+              <button class="soc-filter-pill" data-category="SYSTEM">SYSTEM</button>
+              <button class="soc-filter-pill" data-category="INFRASTRUCTURE">INFRASTRUCTURE</button>
+              <button class="soc-filter-pill" data-category="SOC">SOC</button>
+            </div>
+
+          </div>
+
+          <!-- View 1: Live Stream Log Ticker Pane -->
+          <div class="soc-pane" id="soc-pane-stream">
+            <div class="soc-pane-header">
+              <span>REAL-TIME SIMULATED EVENT STREAM // CLICK ANY LOG ENTRY TO INSPECT PAYLOAD</span>
+              <span style="color: var(--color-emerald);">● AUTO-REFRESHING</span>
+            </div>
+            <div class="soc-log-ticker" id="soc-log-ticker">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- View 2: Network Topology Path Pane -->
+          <div class="soc-pane" id="soc-pane-topology" style="display: none;">
+            <!-- Dynamically populated via JS -->
+          </div>
+
+          <!-- View 3: Module Stack Cards Grid Pane -->
+          <div class="soc-pane" id="soc-pane-stack" style="display: none;">
+            <div class="tools-grid" id="toolsContainer">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. PROJECTS & SECURITY LAB ROADMAP -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="cpu" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>05. BUILDING NEXT</span>
+          </div>
+          <h2 class="section-title">Projects & Security Lab Roadmap</h2>
+          <p class="section-subtitle">
+            Structured hands-on project roadmap currently under active development. Click any 3D tilt card to expand the complete technical case study schema.
+          </p>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. INTERACTIVE CYBERSECURITY JOURNEY -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="milestone" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>06. PROGRESSION ROADMAP</span>
+          </div>
+          <h2 class="section-title">Cybersecurity Journey</h2>
+          <p class="section-subtitle">
+            Interactive step-by-step learning progression mapping foundational skills, security platforms, SIEM workflows, and career milestones. Click any node to inspect details.
+          </p>
+        </div>
+
+        <div id="timelineContainer">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. HANDS-ON PLATFORMS & PROFILES -->
+    <section class="section" id="platforms">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="globe" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>07. HANDS-ON PLATFORMS</span>
+          </div>
+          <h2 class="section-title">TryHackMe & Hack The Box</h2>
+          <p class="section-subtitle">
+            Verified learning profiles across hands-on cybersecurity training platforms and code repositories. Zero artificial rankings or fake statistics.
+          </p>
+        </div>
+
+        <div class="platforms-grid" id="platformsContainer">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CURRENTLY LEARNING -->
+    <section class="section" id="learning">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="book-open" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>08. CONTINUOUS LEARNING</span>
+          </div>
+          <h2 class="section-title">Currently Learning</h2>
+          <p class="section-subtitle">Active topics and theoretical areas being studied to strengthen SOC readiness.</p>
+        </div>
+
+        <div class="learning-grid" id="learningContainer">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. EDUCATION SECTION -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="graduation-cap" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>09. ACADEMIC BACKGROUND</span>
+          </div>
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">Formal university degree details and relevant academic coursework.</p>
+        </div>
+
+        <div class="education-card" id="educationContainer">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. CONTACT SECTION -->
+    <section class="section" id="contact" style="border-bottom: none;">
+      <div class="container">
+        <div class="contact-card">
+          <div class="section-tag" style="margin-bottom: var(--space-4);">
+            <i data-lucide="mail" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+            <span>10. GET IN TOUCH</span>
+          </div>
+          <h2 style="font-size: var(--fs-3xl); margin-bottom: var(--space-3);">Connect with Krish</h2>
+          <p style="max-width: 540px; margin: 0 auto var(--space-6) auto; color: var(--text-secondary);">
+            Open to SOC Analyst internships, trainee security opportunities, collaborative homelab projects, and technical security discussions.
+          </p>
+
+          <div style="font-family: var(--font-mono); background: #07090E; padding: var(--space-4); border-radius: var(--radius-md); display: inline-flex; align-items: center; gap: var(--space-4); border: 1px solid var(--border-medium); margin-bottom: var(--space-6);">
+            <span style="color: var(--color-cyan);">$ email --contact</span>
+            <span style="color: var(--text-primary); font-weight: var(--fw-semibold);">krishdey100@gmail.com</span>
+            <button class="btn btn-secondary" id="copyEmailBtn" style="padding: 4px 10px; font-size: 0.75rem;" title="Copy Email Address to Clipboard">
+              <i data-lucide="copy" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+              <span id="copyBtnText">Copy</span>
+            </button>
+          </div>
+
+          <div class="contact-links">
+            <a href="https://github.com/OSPANDA5555" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i data-lucide="github" aria-hidden="true"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://tryhackme.com/p/krishdey100" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i data-lucide="terminal" aria-hidden="true"></i>
+              <span>TryHackMe</span>
+            </a>
+            <a href="https://profile.hackthebox.com/dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i data-lucide="box" aria-hidden="true"></i>
+              <span>Hack The Box</span>
+            </a>
+            <button class="btn btn-secondary btn-resume-cta" title="Download Resume PDF / CV Placeholder">
+              <i data-lucide="file-text" aria-hidden="true"></i>
+              <span>Resume PDF</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Professional Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        © <span id="currentYear"></span> Krish Kumar Dey. All Rights Reserved. Built with HTML5, Vanilla CSS, Three.js & ES6 JS.
+      </div>
+      <div style="display: flex; align-items: center; gap: var(--space-4);">
+        <span>System Status: <span style="color: var(--color-emerald);">NOMINAL</span></span>
+        <a href="#hero" style="color: var(--color-cyan);">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts Pipeline -->
+  <script src="js/portfolio-data.js"></script>
+  <script src="js/hero-3d.js"></script>
+  <script src="js/skills-interactive.js"></script>
+  <script src="js/soc-dashboard.js"></script>
+  <script src="js/projects-expanded.js"></script>
+  <script src="js/journey-interactive.js"></script>
+  <script src="js/recruiter-ux.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Initialize Lucide icons on page load
+    lucide.createIcons();
+  </script>
+</body>
+</html>
