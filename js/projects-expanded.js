@@ -99,6 +99,7 @@ function openProjectCaseStudy(projectId) {
 
   const hasDiagram = proj.architectureDiagram ? true : false;
   const hasGithub = proj.github ? true : false;
+  const hasDemo = proj.demo ? true : false;
 
   modal.innerHTML = `
     <div class="hud-modal-content case-study-content">
@@ -141,7 +142,7 @@ function openProjectCaseStudy(projectId) {
         <div class="case-study-section">
           <div class="section-label">CONCEPTUAL ARCHITECTURE LAYOUT</div>
           <div class="diagram-preview-box">
-            <img src="${proj.architectureDiagram}" alt="${proj.title} Architecture Diagram" style="width: 100%; border-radius: 8px; max-height: 240px; object-fit: cover; border: 1px solid var(--border-subtle);">
+            <img src="${proj.architectureDiagram}" alt="${proj.title} Architecture Diagram" loading="lazy" decoding="async" style="width: 100%; border-radius: 8px; max-height: 240px; object-fit: cover; border: 1px solid var(--border-subtle);">
           </div>
         </div>
       ` : ''}
@@ -169,6 +170,12 @@ function openProjectCaseStudy(projectId) {
           <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
             <i data-lucide="github"></i>
             <span>GitHub Repository</span>
+          </a>
+        ` : ''}
+        ${hasDemo ? `
+          <a href="${proj.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <i data-lucide="external-link"></i>
+            <span>Live Demo</span>
           </a>
         ` : ''}
         <button class="btn btn-secondary" onclick="document.getElementById('project-case-modal').classList.remove('show')">

@@ -6,12 +6,13 @@
   <meta name="description" content="Krish Kumar Dey — Cybersecurity-focused Computer Science student aspiring to become a SOC Analyst, focused on SIEM, Linux, networking, security monitoring and threat detection.">
   <meta name="keywords" content="Krish Kumar Dey, Krish, SOC Analyst, Cybersecurity Portfolio, Ajeenkya DY Patil University, ADYPU, Wireshark, Nmap, Linux, Python, TryHackMe, Hack The Box">
   <meta name="author" content="Krish Kumar Dey">
+  <meta name="theme-color" content="#05070d">
 
   <!-- Open Graph / Social Media Metadata -->
   <meta property="og:title" content="Krish Kumar Dey | Cybersecurity Portfolio">
   <meta property="og:description" content="Krish Kumar Dey — Cybersecurity-focused Computer Science student aspiring to become a SOC Analyst, focused on SIEM, Linux, networking, security monitoring and threat detection.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://krishcybersecurityportfolio.vercel.app">
+  <meta property="og:url" content="https://krish-dey-dev-portfolio.vercel.app">
   <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
 
   <!-- Twitter Card Metadata -->
@@ -22,20 +23,51 @@
 
   <!-- SVG Shield Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300E5FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/></svg>">
-  <link rel="canonical" href="https://krishcybersecurityportfolio.vercel.app">
+  <link rel="canonical" href="https://krish-dey-dev-portfolio.vercel.app">
+
+  <!-- Structured Data: Person schema for rich search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Krish Kumar Dey",
+    "jobTitle": "Aspiring SOC Analyst",
+    "description": "Cybersecurity-focused Computer Science student aspiring to become a SOC Analyst, focused on SIEM, Linux, networking, security monitoring and threat detection.",
+    "url": "https://krish-dey-dev-portfolio.vercel.app",
+    "email": "mailto:krishdey100@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Ajeenkya DY Patil University"
+    },
+    "sameAs": [
+      "https://github.com/OSPANDA5555",
+      "https://tryhackme.com/p/krishdey100"
+    ],
+    "knowsAbout": ["SOC Operations", "SIEM", "Network Security", "Linux Administration", "Wireshark", "Nmap", "Python Security Automation"]
+  }
+  </script>
 
   <title>Krish Kumar Dey | Cybersecurity Portfolio</title>
 
   <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Three.js WebGL Engine CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons (pinned for reproducible builds) -->
+  <script src="https://unpkg.com/lucide@1.41.0"></script>
 
   <!-- Custom Stylesheet Pipeline -->
   <link rel="stylesheet" href="css/tokens.css">
@@ -220,6 +252,16 @@
             <p style="margin-bottom: 0;">
               Every concept is practiced hands-on in controlled virtual lab environments, adhering to strict legal and ethical security guidelines.
             </p>
+          </div>
+        </div>
+
+        <!-- Live GitHub Activity (real-time profile stats) -->
+        <div class="about-grid" style="margin-top: var(--space-6);">
+          <div class="about-card" style="display: flex; justify-content: center; align-items: center;">
+            <img src="https://github-readme-stats.vercel.app/api?username=OSPANDA5555&show_icons=true&bg_color=0d1117,title_color=00E5FF,text_color=cbd5e1,icon_color=00E5FF,border_color=1e293b" alt="Krish Kumar Dey GitHub statistics" loading="lazy" decoding="async" style="max-width: 100%; height: auto;">
+          </div>
+          <div class="about-card" style="display: flex; justify-content: center; align-items: center;">
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=OSPANDA5555&layout=compact&bg_color=0d1117,title_color=00E5FF,text_color=cbd5e1,border_color=1e293b" alt="Most used programming languages" loading="lazy" decoding="async" style="max-width: 100%; height: auto;">
           </div>
         </div>
       </div>
@@ -566,7 +608,7 @@
           </div>
           <h2 style="font-size: var(--fs-3xl); margin-bottom: var(--space-3);">Let's connect.</h2>
           <p style="max-width: 540px; margin: 0 auto var(--space-6) auto; color: var(--text-secondary);">
-            "I'm currently building my skills in cybersecurity and working toward a career in Security Operations."
+            I'm currently building my skills in cybersecurity and working toward a career in Security Operations.
           </p>
 
           <div style="font-family: var(--font-mono); background: #050505; padding: var(--space-4); border-radius: var(--radius-md); display: inline-flex; align-items: center; gap: var(--space-4); border: 1px solid var(--border-medium); margin-bottom: var(--space-6);">
@@ -591,13 +633,9 @@
               <i data-lucide="box" aria-hidden="true"></i>
               <span>Hack The Box</span>
             </a>
-            <a href="#" class="btn btn-secondary" title="LinkedIn Profile Placeholder (Available upon request)">
-              <i data-lucide="linkedin" aria-hidden="true"></i>
-              <span>LinkedIn (Placeholder)</span>
-            </a>
-            <button class="btn btn-secondary btn-resume-cta" title="Download Resume PDF / CV Placeholder">
+            <button class="btn btn-secondary btn-resume-cta" title="Open Resume (print to PDF)">
               <i data-lucide="file-text" aria-hidden="true"></i>
-              <span>Resume PDF</span>
+              <span>Resume</span>
             </button>
           </div>
         </div>

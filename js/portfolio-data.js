@@ -260,7 +260,7 @@ const PORTFOLIO_DATA = {
       screenshots: [
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
       ],
-      github: "https://github.com/OSPANDA5555",
+      github: "https://github.com/OSPANDA5555/siem",
       demo: null,
       challenges: [
         "Configuring pfSense virtual interface routing between isolated host subnets",
@@ -286,7 +286,7 @@ const PORTFOLIO_DATA = {
       screenshots: [
         "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
       ],
-      github: "https://github.com/OSPANDA5555",
+      github: "https://github.com/OSPANDA5555/Cyber-sec-lab-",
       demo: null,
       challenges: [
         "Filtering out benign background broadcast traffic during PCAP parsing",
@@ -301,8 +301,8 @@ const PORTFOLIO_DATA = {
       id: "proj-03",
       number: "03",
       title: "Security Automation",
-      status: "PLANNED",
-      statusBadgeClass: "badge-planned",
+      status: "IN PROGRESS",
+      statusBadgeClass: "badge-in-progress",
       tag: "Python Security Scripting",
       summary: "Python-based security automation, log parsing utilities, and threat API query tools.",
       problem: "Manual analysis of raw log files and threat intelligence lookup is repetitive and slow during real-time alert triage.",
@@ -312,8 +312,8 @@ const PORTFOLIO_DATA = {
       screenshots: [
         "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
       ],
-      github: "https://github.com/OSPANDA5555",
-      demo: null,
+      github: "https://github.com/OSPANDA5555/threat-detection",
+      demo: "https://threat-detection-os-82c6.vercel.app",
       challenges: [
         "Handling unformatted text log variants safely without breaking execution",
         "Optimizing file I/O performance for large log file parsing"
@@ -338,7 +338,7 @@ const PORTFOLIO_DATA = {
       screenshots: [
         "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
       ],
-      github: "https://github.com/OSPANDA5555",
+      github: "https://github.com/OSPANDA5555/Honeypot-1.0",
       demo: null,
       challenges: [
         "Maintaining strict isolation boundaries between test containers and local host network",
@@ -347,6 +347,32 @@ const PORTFOLIO_DATA = {
       whatILearned: [
         "Hands-on web application proxy manipulation with Burp Suite",
         "Principles of defense-in-depth and input validation"
+      ]
+    },
+    {
+      id: "proj-05",
+      number: "05",
+      title: "Sentinel-X",
+      status: "IN PROGRESS",
+      statusBadgeClass: "badge-in-progress",
+      tag: "AI SOC Investigator & Adversarial Lab",
+      summary: "Autonomous AI-driven SOC investigation platform: correlates security telemetry, constructs attack graphs, and evaluates AI analyst performance under adversarial conditions.",
+      problem: "Manual alert investigation does not scale, and trusting AI analysts without adversarial evaluation risks missed detections and prompt-injection abuse.",
+      solution: "Decoupled microservice-ready platform with a Next.js SOC dashboard, FastAPI backend, PostgreSQL telemetry store, provider-agnostic AI engine, and a 7-stage tool invocation validator.",
+      techStack: ["Next.js", "FastAPI", "PostgreSQL", "Docker", "Python"],
+      architectureDiagram: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+      screenshots: [
+        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80"
+      ],
+      github: "https://github.com/OSPANDA5555/sentinel-x",
+      demo: null,
+      challenges: [
+        "Enforcing read-only tool constraints and prompt-injection isolation in the 7-stage validator",
+        "Correlating heterogeneous telemetry into coherent attack graphs"
+      ],
+      whatILearned: [
+        "Designing provider-agnostic AI engine abstractions across model providers and local mocks",
+        "Structuring microservice-ready SOC apps with FastAPI and PostgreSQL via Docker Compose"
       ]
     }
   ],
@@ -473,7 +499,7 @@ const PORTFOLIO_DATA = {
       icon: "github",
       accent: "#00E5FF",
       statusText: "Open Source Code Repository",
-      description: "Code repository hosting personal Python security scripts, university IT assignments, and homelab setup documentation."
+      description: "Code repository hosting the threat-detection platform, Sentinel-X, SIEM homelab notes, honeypot experiments, and TryHackMe lab writeups."
     }
   ],
 

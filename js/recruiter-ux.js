@@ -114,14 +114,14 @@ function setupEmailCopyHandler() {
 }
 
 /* --------------------------------------------------------------------------
-   Resume CTA Handler Placeholder
+   Resume CTA Handler — opens the printable resume page
    -------------------------------------------------------------------------- */
 function setupResumeCtaHandler() {
   const resumeBtns = document.querySelectorAll('.btn-resume-cta');
   resumeBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      alert('Resume PDF Placeholder: Krish Kumar Dey CV is available upon request (krishdey100@gmail.com).');
+      window.open('resume.html', '_blank', 'noopener');
     });
   });
 }

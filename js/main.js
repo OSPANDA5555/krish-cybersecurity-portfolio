@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try { setupTerminalTabs(); } catch (e) {}
   try { setupNavigation(); } catch (e) {}
   try { setupEmailCopy(); } catch (e) {}
+  try { setupModalDismiss(); } catch (e) {}
 
   // 5. Re-initialize Lucide Icons after DOM populating
   if (window.lucide) {
@@ -46,17 +47,19 @@ function renderHeroTerminal(tabKey) {
   if (!terminalBody) return;
 
   const data = PORTFOLIO_DATA;
+  const profile = data.profile || {};
+  const socials = profile.socials || {};
   let content = '';
 
   if (tabKey === 'status') {
     content = `
       <div class="terminal-line"><span class="prompt-symbol">$</span> <span class="cmd-text">./telemetry.sh --check-status</span></div>
       <div class="terminal-output">
-        <div class="terminal-kv"><span class="kv-key">SYSTEM_USER:</span><span class="kv-val">${data.personalInfo.preferredName} (${data.personalInfo.fullName})</span></div>
-        <div class="terminal-kv"><span class="kv-key">TARGET_ROLE:</span><span class="kv-val-cyan">${data.personalInfo.roleTarget}</span></div>
-        <div class="terminal-kv"><span class="kv-key">UNIVERSITY:</span><span class="kv-val">${data.personalInfo.university}</span></div>
-        <div class="terminal-kv"><span class="kv-key">DEGREE_STATUS:</span><span class="kv-val">${data.personalInfo.degree} (${data.personalInfo.expectedGraduation})</span></div>
-        <div class="terminal-kv"><span class="kv-key">SOC_STATUS:</span><span class="kv-val-cyan">● ${data.personalInfo.statusText}</span></div>
+        <div class="terminal-kv"><span class="kv-key">SYSTEM_USER:</span><span class="kv-val">${profile.preferredName} (${profile.fullName})</span></div>
+        <div class="terminal-kv"><span class="kv-key">TARGET_ROLE:</span><span class="kv-val-cyan">Aspiring ${profile.careerTarget}</span></div>
+        <div class="terminal-kv"><span class="kv-key">UNIVERSITY:</span><span class="kv-val">${profile.university}</span></div>
+        <div class="terminal-kv"><span class="kv-key">DEGREE_STATUS:</span><span class="kv-val">${profile.degree} (${profile.expectedGraduation})</span></div>
+        <div class="terminal-kv"><span class="kv-key">SOC_STATUS:</span><span class="kv-val-cyan">● OPEN TO SOC INTERN / TRAINEE ROLES</span></div>
       </div>
       <div class="terminal-line"><span class="prompt-symbol">$</span> <span class="cmd-text">grep --color=auto "PRIMARY_INTERESTS"</span></div>
       <div class="terminal-output">
@@ -79,9 +82,9 @@ function renderHeroTerminal(tabKey) {
     content = `
       <div class="terminal-line"><span class="prompt-symbol">$</span> <span class="cmd-text">netstat --active-profiles</span></div>
       <div class="terminal-output">
-        <div class="terminal-kv"><span class="kv-key">TRYHACKME:</span><span class="kv-val-cyan"><a href="${data.personalInfo.socials.tryhackme}" target="_blank" style="color: var(--color-cyan);">p/krishdey100</a></span></div>
-        <div class="terminal-kv"><span class="kv-key">HACK_THE_BOX:</span><span class="kv-val"><a href="${data.personalInfo.socials.hackthebox}" target="_blank" style="color: var(--color-emerald);">profile/dashboard</a></span></div>
-        <div class="terminal-kv"><span class="kv-key">GITHUB_REPOS:</span><span class="kv-val"><a href="${data.personalInfo.socials.github}" target="_blank" style="color: var(--text-primary);">github.com/OSPANDA5555</a></span></div>
+        <div class="terminal-kv"><span class="kv-key">TRYHACKME:</span><span class="kv-val-cyan"><a href="${socials.tryHackMe}" target="_blank" style="color: var(--color-cyan);">p/krishdey100</a></span></div>
+        <div class="terminal-kv"><span class="kv-key">HACK_THE_BOX:</span><span class="kv-val"><a href="${socials.hackTheBox}" target="_blank" style="color: var(--color-emerald);">profile/dashboard</a></span></div>
+        <div class="terminal-kv"><span class="kv-key">GITHUB_REPOS:</span><span class="kv-val"><a href="${socials.github}" target="_blank" style="color: var(--text-primary);">github.com/OSPANDA5555</a></span></div>
       </div>
       <div class="terminal-line"><span class="prompt-symbol">$</span> <span style="color: var(--color-emerald);">READY_FOR_COMMUNICATIONS</span></div>
     `;
@@ -111,132 +114,16 @@ function renderFocusPillars() {
   const container = document.getElementById('focusContainer');
   if (!container) return;
 
-  container.innerHTML = PORTFOLIO_DATA.focusPillars.map(pillar => `
+  container.innerHTML = PORTFOLIO_DATA.focusPillars.map((pillar, idx) => `
     <div class="focus-card">
       <div class="focus-icon-wrap">
         <i data-lucide="${pillar.icon}"></i>
       </div>
-      <span class="tag-pill" style="color: var(--color-cyan); margin-bottom: 8px; display: inline-block;">${pillar.badge}</span>
+      <span class="tag-pill" style="color: var(--color-cyan); margin-bottom: 8px; display: inline-block;">FOCUS 0${idx + 1}</span>
       <h3 class="focus-card-title">${pillar.title}</h3>
-      <p style="font-size: var(--fs-sm);">${pillar.description}</p>
+      <p style="font-size: var(--fs-sm);">${pillar.summary}</p>
       <div class="focus-tags">
-        ${pillar.concepts.map(c => `<span class="tag-pill">${c}</span>`).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-// Technical Skills (Programming + Infrastructure)
-function renderSkills() {
-  const progContainer = document.getElementById('programmingSkillsContainer');
-  const infraContainer = document.getElementById('infrastructureSkillsContainer');
-
-  if (progContainer) {
-    progContainer.innerHTML = PORTFOLIO_DATA.technicalSkills.programming.map(skill => `
-      <div class="skill-item">
-        <div class="skill-name">
-          <i data-lucide="${skill.icon}" style="width: 16px; height: 16px; color: var(--color-cyan);"></i>
-          <span>${skill.name}</span>
-        </div>
-        <span class="skill-tag">${skill.tag}</span>
-      </div>
-    `).join('');
-  }
-
-  if (infraContainer) {
-    infraContainer.innerHTML = PORTFOLIO_DATA.technicalSkills.infrastructure.map(skill => `
-      <div class="skill-item">
-        <div class="skill-name">
-          <i data-lucide="${skill.icon}" style="width: 16px; height: 16px; color: var(--color-emerald);"></i>
-          <span>${skill.name}</span>
-        </div>
-        <span class="skill-tag" style="color: var(--color-emerald);">${skill.tag}</span>
-      </div>
-    `).join('');
-  }
-}
-
-// Lab Tools Grid
-function renderLabTools() {
-  const container = document.getElementById('toolsContainer');
-  if (!container) return;
-
-  container.innerHTML = PORTFOLIO_DATA.labToolset.map(tool => `
-    <div class="tool-card">
-      <div>
-        <div class="tool-card-header">
-          <h3 class="tool-name">${tool.name}</h3>
-          <span class="status-pill" style="font-size: 0.7rem; padding: 2px 8px;">${tool.status}</span>
-        </div>
-        <div class="tool-category">${tool.category}</div>
-        <p style="font-size: var(--fs-sm); margin-top: var(--space-3); margin-bottom: 0;">${tool.description}</p>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Projects & Lab Roadmap (Zero Fabrication)
-function renderLabRoadmap() {
-  const container = document.getElementById('roadmapContainer');
-  if (!container) return;
-
-  container.innerHTML = PORTFOLIO_DATA.labRoadmap.map(lab => `
-    <div class="roadmap-card">
-      <span class="roadmap-status-badge ${lab.status === 'IN PROGRESS' ? 'badge-in-progress' : 'badge-planned'}">
-        ● ${lab.status}
-      </span>
-      <h3 class="roadmap-title">${lab.title}</h3>
-      <div style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-cyan); margin-bottom: 8px;">
-        ${lab.tag} | Expected: ${lab.date}
-      </div>
-      <p class="roadmap-summary">${lab.summary}</p>
-      
-      <div class="roadmap-outcomes">
-        <div class="roadmap-outcomes-title">PLANNED LAB OBJECTIVES:</div>
-        ${lab.outcomes.map(o => `<div class="roadmap-outcome-item"><span>${o}</span></div>`).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-// Cybersecurity Journey Timeline
-function renderTimeline() {
-  const container = document.getElementById('timelineContainer');
-  if (!container) return;
-
-  container.innerHTML = PORTFOLIO_DATA.journeyTimeline.map(item => `
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <span class="timeline-year">${item.year}</span>
-        <h3 class="timeline-title">${item.title}</h3>
-        <div class="timeline-org">${item.organization}</div>
-        <p style="font-size: var(--fs-sm); margin-bottom: 0;">${item.description}</p>
-      </div>
-    </div>
-  `).join('');
-}
-
-// TryHackMe, HTB & GitHub Platforms
-function renderPlatforms() {
-  const container = document.getElementById('platformsContainer');
-  if (!container) return;
-
-  container.innerHTML = PORTFOLIO_DATA.platforms.map(platform => `
-    <div class="platform-card">
-      <div>
-        <div class="platform-header">
-          <div class="platform-name" style="color: ${platform.accent}">${platform.name}</div>
-          <i data-lucide="${platform.icon}" style="color: ${platform.accent}"></i>
-        </div>
-        <div class="platform-handle">Username: @${platform.handle}</div>
-        <p style="font-size: var(--fs-sm);">${platform.description}</p>
-      </div>
-      <div style="margin-top: var(--space-4);">
-        <a href="${platform.profileUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%;">
-          <span>View Profile</span>
-          <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
-        </a>
+        ${pillar.keyTopics.map(c => `<span class="tag-pill">${c}</span>`).join('')}
       </div>
     </div>
   `).join('');
@@ -249,9 +136,9 @@ function renderCurrentlyLearning() {
 
   container.innerHTML = PORTFOLIO_DATA.currentlyLearning.map(item => `
     <div class="learning-card">
-      <div class="learning-cat">${item.category}</div>
+      <div class="learning-cat">${item.area} • ${item.status}</div>
       <h3 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin-bottom: var(--space-2);">${item.topic}</h3>
-      <p style="font-size: var(--fs-sm); margin-bottom: 0;">${item.detail}</p>
+      <p style="font-size: var(--fs-sm); margin-bottom: 0;">${item.note}</p>
     </div>
   `).join('');
 }
@@ -379,6 +266,26 @@ function setupEmailCopy() {
     }).catch(err => {
       console.error('Failed to copy email: ', err);
     });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Global HUD Modal Dismiss — Escape key + backdrop click.
+   Both the project case-study modal and the journey milestone drawer
+   share the .node-hud-modal backdrop class, so one delegated handler
+   covers both even though their content re-renders on every open.
+   -------------------------------------------------------------------------- */
+function setupModalDismiss() {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      document.querySelectorAll('.node-hud-modal.show').forEach(m => m.classList.remove('show'));
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.classList && e.target.classList.contains('node-hud-modal')) {
+      e.target.classList.remove('show');
+    }
   });
 }
 
