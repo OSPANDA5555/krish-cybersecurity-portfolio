@@ -31,4 +31,4 @@ No build step. Static files, deployed to Vercel (`vercel.json`, `cleanUrls: true
 
 - Project statuses are literal (`IN PROGRESS` / `PLANNED`) — nothing is oversold.
 - The SOC dashboard stream is simulated telemetry for UI demonstration, labeled as such on the page.
-- Contact: krishdey100@gmail.com · [GitHub](https://github.com/OSPANDA5555) · [TryHackMe](https://tryhackme.com/p/krishdey100)
+- Contact: krishdey100@gmail.com · [LinkedIn](https://www.linkedin.com/in/krish-dey-dev/) · [GitHub](https://github.com/OSPANDA5555) · [TryHackMe](https://tryhackme.com/p/krishdey100)

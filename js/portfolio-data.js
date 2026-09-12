@@ -25,6 +25,7 @@ const PORTFOLIO_DATA = {
       tryHackMe: "https://tryhackme.com/p/krishdey100",
       hackTheBox: "https://profile.hackthebox.com/dashboard",
       github: "https://github.com/OSPANDA5555",
+      linkedin: "https://www.linkedin.com/in/krish-dey-dev/",
       email: "krishdey100@gmail.com"
     }
   },
@@ -300,27 +301,27 @@ const PORTFOLIO_DATA = {
     {
       id: "proj-03",
       number: "03",
-      title: "Security Automation",
-      status: "IN PROGRESS",
-      statusBadgeClass: "badge-in-progress",
-      tag: "Python Security Scripting",
-      summary: "Python-based security automation, log parsing utilities, and threat API query tools.",
-      problem: "Manual analysis of raw log files and threat intelligence lookup is repetitive and slow during real-time alert triage.",
-      solution: "Creating modular Python CLI utilities to automate log file parsing, regex extraction of IP indicators of compromise (IOCs), and automated report generation.",
-      techStack: ["Python", "Bash CLI", "REST APIs", "JSON / Regex"],
-      architectureDiagram: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
+      title: "Autonomous Threat-Hunting Copilot",
+      status: "COMPLETED & VERIFIED",
+      statusBadgeClass: "badge-completed",
+      tag: "AI SOC Copilot & Zero-Trust Investigation Engine",
+      summary: "AI-assisted, zero-trust threat hunting workstation & controlled autonomous investigation engine for SOC analysts with MITRE ATT&CK mapping, interactive indicator graphs, prompt injection defenses, and 38/38 passing Pytest unit tests.",
+      problem: "Traditional SOC alert investigations are manual and slow, while unconstrained LLM assistants risk arbitrary code/shell execution, prompt-injection exploits, and hallucinated security conclusions.",
+      solution: "Engineered a zero-trust threat-hunting workstation featuring a FastAPI backend, 9 read-only security tools, strict Pydantic schemas, hypothesis state loops, MITRE ATT&CK technique correlation, directional indicator graphs, and an interactive React SOC analyst dashboard.",
+      techStack: ["FastAPI", "React", "Python", "Docker", "Pydantic", "MITRE ATT&CK", "Pytest"],
+      architectureDiagram: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
       screenshots: [
         "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
       ],
       github: "https://github.com/OSPANDA5555/threat-detection",
       demo: "https://threat-detection-os-82c6.vercel.app",
       challenges: [
-        "Handling unformatted text log variants safely without breaking execution",
-        "Optimizing file I/O performance for large log file parsing"
+        "Enforcing strict Zero-Trust boundaries and prompt-injection sanitization (<UNTRUSTED_TELEMETRY_DATA>) across 8 synthetic attack scenarios",
+        "Building directional indicator graphs (IP → USER → HOST → PROCESS → FILE) and validating 38/38 unit tests for ground-truth evaluation"
       ],
       whatILearned: [
-        "Building production-grade CLI tools with Python argument parsing",
-        "Automating routine security tasks to improve triage speed"
+        "Architecting robust AI security controls with hard autonomy caps, human oversight approval gates, and zero shell execution",
+        "Structuring enterprise SOC analyst workflows with MITRE ATT&CK framework alignment and reproducible audit streams"
       ]
     },
     {
@@ -500,6 +501,16 @@ const PORTFOLIO_DATA = {
       accent: "#00E5FF",
       statusText: "Open Source Code Repository",
       description: "Code repository hosting the threat-detection platform, Sentinel-X, SIEM homelab notes, honeypot experiments, and TryHackMe lab writeups."
+    },
+    {
+      id: "linkedin",
+      name: "LinkedIn",
+      handle: "krish-dey-dev",
+      profileUrl: "https://www.linkedin.com/in/krish-dey-dev/",
+      icon: "linkedin",
+      accent: "#0A66C2",
+      statusText: "Professional Network Profile",
+      description: "Connecting with cybersecurity practitioners, SOC analysts, and engineering teams. Sharing project milestones and research findings."
     }
   ],
 

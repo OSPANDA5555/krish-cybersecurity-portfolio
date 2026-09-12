@@ -725,10 +725,29 @@ code, kbd, samp, pre {
   margin-bottom: var(--space-4);
 }
 
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+}
+
 .badge-in-progress {
   background: var(--color-cyan-dim);
   color: var(--color-cyan);
   border: 1px solid var(--border-cyan-glow);
+}
+
+.badge-completed,
+.badge-complete,
+.badge-active,
+.badge-emerald {
+  background: var(--color-emerald-dim);
+  color: var(--color-emerald);
+  border: 1px solid var(--border-emerald-glow);
 }
 
 .badge-planned {

@@ -85,6 +85,7 @@ function renderHeroTerminal(tabKey) {
         <div class="terminal-kv"><span class="kv-key">TRYHACKME:</span><span class="kv-val-cyan"><a href="${socials.tryHackMe}" target="_blank" style="color: var(--color-cyan);">p/krishdey100</a></span></div>
         <div class="terminal-kv"><span class="kv-key">HACK_THE_BOX:</span><span class="kv-val"><a href="${socials.hackTheBox}" target="_blank" style="color: var(--color-emerald);">profile/dashboard</a></span></div>
         <div class="terminal-kv"><span class="kv-key">GITHUB_REPOS:</span><span class="kv-val"><a href="${socials.github}" target="_blank" style="color: var(--text-primary);">github.com/OSPANDA5555</a></span></div>
+        <div class="terminal-kv"><span class="kv-key">LINKEDIN:</span><span class="kv-val"><a href="${socials.linkedin || 'https://www.linkedin.com/in/krish-dey-dev/'}" target="_blank" style="color: #0A66C2;">in/krish-dey-dev</a></span></div>
       </div>
       <div class="terminal-line"><span class="prompt-symbol">$</span> <span style="color: var(--color-emerald);">READY_FOR_COMMUNICATIONS</span></div>
     `;
