@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://krishcybersecurityportfolio.vercel.app/sitemap.xml
+Sitemap: https://krish-dey-dev-portfolio.vercel.app/sitemap.xml

@@ -2,7 +2,7 @@
 
 Aspiring SOC Analyst portfolio: B.Tech Computer Science & IT @ Ajeenkya DY Patil University (ADYPU), Pune. Focused on SIEM, Linux, networking, security monitoring, and threat detection.
 
-**Live:** https://krishcybersecurityportfolio.vercel.app
+**Live:** https://krish-dey-dev-portfolio.vercel.app
 
 ## What's inside
 
