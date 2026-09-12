@@ -11,6 +11,7 @@ Aspiring SOC Analyst portfolio: B.Tech Computer Science & IT @ Ajeenkya DY Patil
 - **SOC telemetry lab** — simulated log stream, topology view, and module stack with category filters (demo data, clearly labeled as simulated)
 - **Projects** — case-study cards with 3D tilt + expandable modals (problem → solution → stack → challenges → lessons), linked to real GitHub repos, including a live demo for threat-detection
 - **Journey & platforms** — interactive learning timeline plus TryHackMe / Hack The Box / GitHub profile cards
+- **Resume page** — `resume.html`, printable to PDF, generated from the same data (no placeholders)
 - **Skills visualizer, education card, contact section** with copy-email
 
 ## Single source of truth
