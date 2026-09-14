@@ -15,6 +15,8 @@ const PORTFOLIO_DATA = {
     primaryInterests: [
       "Cybersecurity",
       "SOC Operations",
+      "Bug Bounty Hunting",
+      "Web Application Security",
       "SIEM",
       "Linux Administration",
       "Networking",
@@ -143,6 +145,13 @@ const PORTFOLIO_DATA = {
         stateBadgeClass: "state-amber",
         description: "Studying OWASP top vulnerabilities, HTTP request/response headers, and parameter proxying.",
         relevance: "Understanding web application attack vectors."
+      },
+      {
+        name: "Bug Bounty & Web Security",
+        state: "Practicing",
+        stateBadgeClass: "state-cyan",
+        description: "Reconnaissance, OWASP Top 10 web vulnerabilities (IDOR, XSS, SSRF, Auth Bypass), and parameter tampering using Burp Suite.",
+        relevance: "Hands-on offensive testing to identify exploitable flaws and defend production web apps."
       },
       {
         name: "Security Monitoring",
@@ -532,6 +541,12 @@ const PORTFOLIO_DATA = {
       area: "Networking",
       status: "PRACTICING",
       note: "Inspecting TCP 3-way handshakes and DNS queries using Wireshark PCAP captures."
+    },
+    {
+      topic: "Bug Bounty & Web Security",
+      area: "Offensive Defense",
+      status: "PRACTICING",
+      note: "Exploring OWASP Top 10 vulnerabilities (IDOR, XSS, SSRF) and Burp Suite HTTP proxy testing on target scopes."
     }
   ],
 
